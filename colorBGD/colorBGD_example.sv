@@ -52,9 +52,9 @@ logic snake_on;
 always_comb
 begin:Snake_on_proc
     if ((DrawX >= snakeX_pos - 12) &&
-		  (DrawX <= snakeX_pos + 12) &&
+		  (DrawX <= snakeX_pos + 11) &&
 		  (DrawY >= snakeY_pos - 12) &&
-       (DrawY <= snakeY_pos + 12)) begin
+       (DrawY <= snakeY_pos + 11)) begin
 		 
 //		  case(keycode)
 //		 
