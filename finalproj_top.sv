@@ -68,9 +68,9 @@ module finalproj_top (
 	logic [3:0] hex_num_4, hex_num_3, hex_num_1, hex_num_0; //4 bit input hex digits
 	logic [1:0] signs;
 	logic [1:0] hundreds;
-	logic [9:0] drawxsig, drawysig, ballxsig, ballysig, ballsizesig;
+	logic [9:0] drawxsig, drawysig, ballxsig, ballysig, ballsizesig, snakexsig2, snakeysig2, snake2Size;
 	logic [7:0] Red, Blue, Green;
-	logic [7:0] keycode;
+	logic [15:0] keycode;
 
 //=======================================================
 //  Structural coding
@@ -183,7 +183,7 @@ module finalproj_top (
 	snake s_main (
 		.Reset(Reset_h),
 		.frame_clk(VGA_VS),
-		.keycode(keycode),
+		.keycode(keycode[15:8]),
 		.BallX(ballxsig),
 		.BallY(ballysig),
 		.BallS(ballsizesig),
@@ -191,6 +191,21 @@ module finalproj_top (
 		.x_velocity(x_velocity),
 		.y_velocity(y_velocity),
 	);
+	
+	snake s_enemy (
+		.Reset(Reset_h),
+		.frame_clk(VGA_VS),
+		.keycode(keycode[7:0]),
+		
+		.BallX(snakexsig2),
+		.BallY(snakeysig2),
+		.BallS(snake2Size),
+		
+		.x_velocity(x_velocity),
+		.y_velocity(y_velocity),
+	);
+	
+
 	
 //	color_mapper cm (
 //		.BallX(ballxsig),
@@ -216,6 +231,8 @@ module finalproj_top (
 		
 		.snakeX_pos(ballxsig),
 		.snakeY_pos(ballysig),
+		.snake2X_pos(snakexsig2),
+		.snake2Y_pos(snakeysig2),
 		.snake_size(ballsizesig)
 		
 	);
