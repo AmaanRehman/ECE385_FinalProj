@@ -1,6 +1,6 @@
 module colorBGD_example (
 	input logic Clk,
-	input logic [7:0] keycode,
+	input logic [15:0] keycode,
 	
 	input logic vga_clk,
 	input logic [9:0] DrawX, DrawY,
@@ -8,6 +8,9 @@ module colorBGD_example (
 	input logic [9:0] snakeX_pos,
 	input logic [9:0] snakeY_pos,
 	input logic [9:0] snake_size,
+	
+	input logic [9:0] snake2X_pos,
+	input logic [9:0] snake2Y_pos,
 	
 	output logic [3:0] red, green, blue
 );
@@ -47,13 +50,14 @@ int DistX, DistY, Size;
 
     assign Size = snake_size;
 
-logic snake_on;
+logic snake_on, snake2_on;
 	 
 always_comb
 begin:Snake_on_proc
+
     if ((DrawX >= snakeX_pos - 12) &&
-		  (DrawX <= snakeX_pos + 11) &&
-		  (DrawY >= snakeY_pos - 12) &&
+		 (DrawX <= snakeX_pos + 11)  &&
+		 (DrawY >= snakeY_pos - 12)  &&
        (DrawY <= snakeY_pos + 11)) begin
 		 
 //		  case(keycode)
@@ -72,8 +76,23 @@ begin:Snake_on_proc
 	
 		end
 		
-    else 
+		  
+//	 else if ((DrawX >= snake2X_pos - 12) &&
+//				(DrawX <= snake2X_pos + 11)  &&
+//				(DrawY >= snake2Y_pos - 12)  &&
+//				(DrawY <= snake2Y_pos + 11)) begin
+//				
+//			snake2_on = 1'b1;
+//			
+//	 end
+	 
+	 else begin
+	 
         snake_on = 1'b0;
+//		  snake2_on = 1'b0;
+		  
+	 end
+		  
  end 
 	 
 always_ff @ (posedge vga_clk) begin
@@ -102,7 +121,27 @@ always_ff @ (posedge vga_clk) begin
 				blue <= bluePaletteOut;
 				
 			end
+		end
 		
+		else if (snake2_on == 1'b1) begin
+			
+			if ((redPaletteOut == 4'hF) &&
+					(bluePaletteOut == 4'hF) && 
+					(greenPaletteOut == 4'h0)) begin
+				
+				red <= palette_red;
+				green <= palette_green;
+				blue <= palette_blue;
+				
+			end
+			
+			else begin
+			
+				red <= redPaletteOut;
+				green <= greenPaletteOut;
+				blue <= bluePaletteOut;
+				
+			end	
 		end
 		
 		else begin
@@ -123,7 +162,7 @@ logic Load;
 
 move_stateMachine m1(
 					.Clk(Clk),
-					.keycode(keycode),
+					.keycode(keycode[15:8]),
 					.motionFlag(motionFlag),
 					.Load(Load)
 			
