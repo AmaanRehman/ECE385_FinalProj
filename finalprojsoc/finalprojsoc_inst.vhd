@@ -24,7 +24,8 @@
 			usb_irq_export                 : in    std_logic                     := 'X';             -- export
 			usb_rst_export                 : out   std_logic;                                        -- export
 			x_velocity_export              : out   std_logic_vector(31 downto 0);                    -- export
-			y_velocity_export              : out   std_logic_vector(31 downto 0)                     -- export
+			y_velocity_export              : out   std_logic_vector(31 downto 0);                    -- export
+			rand_cord_export               : out   std_logic_vector(19 downto 0)                     -- export
 		);
 	end component finalprojsoc;
 
@@ -54,6 +55,7 @@
 			usb_irq_export                 => CONNECTED_TO_usb_irq_export,                 --                 usb_irq.export
 			usb_rst_export                 => CONNECTED_TO_usb_rst_export,                 --                 usb_rst.export
 			x_velocity_export              => CONNECTED_TO_x_velocity_export,              --              x_velocity.export
-			y_velocity_export              => CONNECTED_TO_y_velocity_export               --              y_velocity.export
+			y_velocity_export              => CONNECTED_TO_y_velocity_export,              --              y_velocity.export
+			rand_cord_export               => CONNECTED_TO_rand_cord_export                --               rand_cord.export
 		);
 

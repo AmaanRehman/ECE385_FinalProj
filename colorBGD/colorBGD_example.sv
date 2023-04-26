@@ -1,6 +1,9 @@
 module colorBGD_example (
 	input logic Clk,
+	input logic reset,
 	input logic [15:0] keycode,
+	
+	input logic [19:0] randCord,
 	
 	input logic vga_clk,
 	input logic [9:0] DrawX, DrawY,
@@ -12,7 +15,8 @@ module colorBGD_example (
 	input logic [9:0] snake2X_pos,
 	input logic [9:0] snake2Y_pos,
 	
-	output logic [3:0] red, green, blue
+	output logic [3:0] red, green, blue,
+	output [9:0] LED
 );
 
 logic [18:0] rom_address;
@@ -123,6 +127,8 @@ always_ff @ (posedge vga_clk) begin
 	red <= 4'h0;
 	green <= 4'h0;
 	blue <= 4'h0;
+	
+	LED = 0;
 
 	if (blank) begin
 		
@@ -135,6 +141,8 @@ always_ff @ (posedge vga_clk) begin
 				red <= palette_red;
 				green <= palette_green;
 				blue <= palette_blue;
+				
+				LED[0] = 1'b1;
 				
 			end
 			
@@ -176,8 +184,54 @@ always_ff @ (posedge vga_clk) begin
 			blue <= palette_blue;
 			
 		end
+		
+			/// Random Block Generation
+
+	
+			if (((DrawX >= randCord[19:10] - 20) &&
+				(DrawX <= randCord[19:10] + 20)  &&
+				(DrawY >= randCord[9:0] - 12)  &&
+				(DrawY <= randCord[9:0] + 12))) begin
+				
+					red <= 4'h0;
+					green <= 4'h0;
+					blue <= 4'h0;
+					
+					LED[4] = 1'b1;
+		
+			end
+	
+			///////
 	end
+	
+	
 end
+
+
+// Random Coordinate generation for obstacles
+
+logic [9:0] randX, randY;
+logic enable, clkout;
+
+lfsr lfsr_inst1(
+				.Clk(clkout),
+				.reset(reset),
+				.out(randX),
+				.Enable(1'b1),
+);
+
+lfsr lfsr_inst2(
+				.Clk(clkout),
+				.reset(reset),
+				.out(randY),
+				.Enable(1'b1),
+);
+
+clock_divider(
+		.Clk(vga_clk),
+		.reset(reset),
+		.ClkOut(clkout)
+	);
 
 
 // Movement state maching

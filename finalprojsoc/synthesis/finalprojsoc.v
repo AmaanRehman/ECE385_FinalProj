@@ -9,6 +9,7 @@ module finalprojsoc (
 		input  wire [1:0]  key_external_connection_export, // key_external_connection.export
 		output wire [15:0] keycode_export,                 //                 keycode.export
 		output wire [13:0] leds_export,                    //                    leds.export
+		output wire [19:0] rand_cord_export,               //               rand_cord.export
 		input  wire        reset_reset_n,                  //                   reset.reset_n
 		output wire        sdram_clk_clk,                  //               sdram_clk.clk
 		output wire [12:0] sdram_wire_addr,                //              sdram_wire.addr
@@ -123,6 +124,11 @@ module finalprojsoc (
 	wire   [1:0] mm_interconnect_0_y_velocity_s1_address;                    // mm_interconnect_0:y_velocity_s1_address -> y_velocity:address
 	wire         mm_interconnect_0_y_velocity_s1_write;                      // mm_interconnect_0:y_velocity_s1_write -> y_velocity:write_n
 	wire  [31:0] mm_interconnect_0_y_velocity_s1_writedata;                  // mm_interconnect_0:y_velocity_s1_writedata -> y_velocity:writedata
+	wire         mm_interconnect_0_random_coordinate_s1_chipselect;          // mm_interconnect_0:random_coordinate_s1_chipselect -> random_coordinate:chipselect
+	wire  [31:0] mm_interconnect_0_random_coordinate_s1_readdata;            // random_coordinate:readdata -> mm_interconnect_0:random_coordinate_s1_readdata
+	wire   [1:0] mm_interconnect_0_random_coordinate_s1_address;             // mm_interconnect_0:random_coordinate_s1_address -> random_coordinate:address
+	wire         mm_interconnect_0_random_coordinate_s1_write;               // mm_interconnect_0:random_coordinate_s1_write -> random_coordinate:write_n
+	wire  [31:0] mm_interconnect_0_random_coordinate_s1_writedata;           // mm_interconnect_0:random_coordinate_s1_writedata -> random_coordinate:writedata
 	wire         mm_interconnect_0_spi_0_spi_control_port_chipselect;        // mm_interconnect_0:spi_0_spi_control_port_chipselect -> spi_0:spi_select
 	wire  [15:0] mm_interconnect_0_spi_0_spi_control_port_readdata;          // spi_0:data_to_cpu -> mm_interconnect_0:spi_0_spi_control_port_readdata
 	wire   [2:0] mm_interconnect_0_spi_0_spi_control_port_address;           // mm_interconnect_0:spi_0_spi_control_port_address -> spi_0:mem_addr
@@ -133,7 +139,7 @@ module finalprojsoc (
 	wire         irq_mapper_receiver1_irq;                                   // timer:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                   // spi_0:irq -> irq_mapper:receiver2_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                       // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [hex_digits_pio:reset_n, irq_mapper:reset, jtag_uart:rst_n, key:reset_n, keycode:reset_n, leds_pio:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sysid_qsys_0:reset_n, timer:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n, x_velocity:reset_n, y_velocity:reset_n]
+	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [hex_digits_pio:reset_n, irq_mapper:reset, jtag_uart:rst_n, key:reset_n, keycode:reset_n, leds_pio:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, random_coordinate:reset_n, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sysid_qsys_0:reset_n, timer:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n, x_velocity:reset_n, y_velocity:reset_n]
 	wire         rst_controller_reset_out_reset_req;                         // rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                     // nios2_gen2_0:debug_reset_request -> [rst_controller:reset_in1, rst_controller_001:reset_in1]
 	wire         rst_controller_001_reset_out_reset;                         // rst_controller_001:reset_out -> [mm_interconnect_0:sdram_reset_reset_bridge_in_reset_reset, sdram:reset_n]
@@ -233,6 +239,17 @@ module finalprojsoc (
 		.reset      (rst_controller_reset_out_reset),                   // reset1.reset
 		.reset_req  (rst_controller_reset_out_reset_req),               //       .reset_req
 		.freeze     (1'b0)                                              // (terminated)
+	);
+
+	finalprojsoc_random_coordinate random_coordinate (
+		.clk        (clk_clk),                                           //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                   //               reset.reset_n
+		.address    (mm_interconnect_0_random_coordinate_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_random_coordinate_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_random_coordinate_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_random_coordinate_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_random_coordinate_s1_readdata),   //                    .readdata
+		.out_port   (rand_cord_export)                                   // external_connection.export
 	);
 
 	finalprojsoc_sdram sdram (
@@ -424,6 +441,11 @@ module finalprojsoc (
 		.onchip_memory2_0_s1_byteenable                 (mm_interconnect_0_onchip_memory2_0_s1_byteenable),           //                                         .byteenable
 		.onchip_memory2_0_s1_chipselect                 (mm_interconnect_0_onchip_memory2_0_s1_chipselect),           //                                         .chipselect
 		.onchip_memory2_0_s1_clken                      (mm_interconnect_0_onchip_memory2_0_s1_clken),                //                                         .clken
+		.random_coordinate_s1_address                   (mm_interconnect_0_random_coordinate_s1_address),             //                     random_coordinate_s1.address
+		.random_coordinate_s1_write                     (mm_interconnect_0_random_coordinate_s1_write),               //                                         .write
+		.random_coordinate_s1_readdata                  (mm_interconnect_0_random_coordinate_s1_readdata),            //                                         .readdata
+		.random_coordinate_s1_writedata                 (mm_interconnect_0_random_coordinate_s1_writedata),           //                                         .writedata
+		.random_coordinate_s1_chipselect                (mm_interconnect_0_random_coordinate_s1_chipselect),          //                                         .chipselect
 		.sdram_s1_address                               (mm_interconnect_0_sdram_s1_address),                         //                                 sdram_s1.address
 		.sdram_s1_write                                 (mm_interconnect_0_sdram_s1_write),                           //                                         .write
 		.sdram_s1_read                                  (mm_interconnect_0_sdram_s1_read),                            //                                         .read

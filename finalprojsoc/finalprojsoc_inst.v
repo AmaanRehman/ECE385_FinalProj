@@ -23,6 +23,7 @@
 		.usb_irq_export                 (<connected-to-usb_irq_export>),                 //                 usb_irq.export
 		.usb_rst_export                 (<connected-to-usb_rst_export>),                 //                 usb_rst.export
 		.x_velocity_export              (<connected-to-x_velocity_export>),              //              x_velocity.export
-		.y_velocity_export              (<connected-to-y_velocity_export>)               //              y_velocity.export
+		.y_velocity_export              (<connected-to-y_velocity_export>),              //              y_velocity.export
+		.rand_cord_export               (<connected-to-rand_cord_export>)                //               rand_cord.export
 	);
 

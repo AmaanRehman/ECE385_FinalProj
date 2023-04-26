@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'finalprojsoc'
  * SOPC Builder design path: ../../finalprojsoc.sopcinfo
  *
- * Generated: Mon Apr 24 17:47:08 CDT 2023
+ * Generated: Tue Apr 25 23:07:01 CDT 2023
  */
 
 /*
@@ -347,6 +347,33 @@
 
 
 /*
+ * random_coordinate configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_random_coordinate altera_avalon_pio
+#define RANDOM_COORDINATE_BASE 0x30
+#define RANDOM_COORDINATE_BIT_CLEARING_EDGE_REGISTER 0
+#define RANDOM_COORDINATE_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define RANDOM_COORDINATE_CAPTURE 0
+#define RANDOM_COORDINATE_DATA_WIDTH 20
+#define RANDOM_COORDINATE_DO_TEST_BENCH_WIRING 0
+#define RANDOM_COORDINATE_DRIVEN_SIM_VALUE 0
+#define RANDOM_COORDINATE_EDGE_TYPE "NONE"
+#define RANDOM_COORDINATE_FREQ 50000000
+#define RANDOM_COORDINATE_HAS_IN 0
+#define RANDOM_COORDINATE_HAS_OUT 1
+#define RANDOM_COORDINATE_HAS_TRI 0
+#define RANDOM_COORDINATE_IRQ -1
+#define RANDOM_COORDINATE_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define RANDOM_COORDINATE_IRQ_TYPE "NONE"
+#define RANDOM_COORDINATE_NAME "/dev/random_coordinate"
+#define RANDOM_COORDINATE_RESET_VALUE 0
+#define RANDOM_COORDINATE_SPAN 16
+#define RANDOM_COORDINATE_TYPE "altera_avalon_pio"
+
+
+/*
  * sdram configuration
  *
  */
@@ -442,7 +469,7 @@
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1682376367
+#define SYSID_QSYS_0_TIMESTAMP 1682481837
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 

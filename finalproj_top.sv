@@ -71,6 +71,7 @@ module finalproj_top (
 	logic [9:0] drawxsig, drawysig, ballxsig, ballysig, ballsizesig, snakexsig2, snakeysig2, snake2Size;
 	logic [7:0] Red, Blue, Green;
 	logic [15:0] keycode;
+	logic [19:0] randCord;
 
 //=======================================================
 //  Structural coding
@@ -161,9 +162,16 @@ module finalproj_top (
 		
 		// Velocities for mouse
 		.x_velocity_export(x_velocity),
-		.y_velocity_export(y_velocity)
+		.y_velocity_export(y_velocity),
+		
+		// Random Coordinate
+		
+		.rand_cord_export(randCord)
 		
 	 );
+	 
+	 
+	 
 
 
 //instantiate a vga_controller, ball, and color_mapper here with the ports.
@@ -220,6 +228,7 @@ module finalproj_top (
 	
 	colorBGD_example (
 		.Clk(MAX10_CLK1_50),
+		.reset(Reset_h),
 		.keycode(keycode),
 		.vga_clk(VGA_Clk),
 		.DrawX(drawxsig),
@@ -233,7 +242,11 @@ module finalproj_top (
 		.snakeY_pos(ballysig),
 		.snake2X_pos(snakexsig2),
 		.snake2Y_pos(snakeysig2),
-		.snake_size(ballsizesig)
+		.snake_size(ballsizesig),
+		
+		.randCord(randCord),
+		
+		.LED(LEDR)
 		
 	);
 

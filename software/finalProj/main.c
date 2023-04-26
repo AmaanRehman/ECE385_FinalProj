@@ -136,6 +136,11 @@ void setVelocities(WORD x_velocity, WORD y_velocity) {
 	IOWR_ALTERA_AVALON_PIO_DATA(0x80, y_velocity);
 }
 
+void setRandCord(WORD randX, WORD randY) {
+	IOWR_ALTERA_AVALON_PIO_DATA(0x30, (randX << 10) | randY);
+
+}
+
 int main() {
 	BYTE rcode;
 	BOOT_MOUSE_REPORT buf;		//USB mouse report
@@ -152,7 +157,7 @@ int main() {
 	printf("initializing USB...\n");
 	USB_init();
 	while (1) {
-		printf(".");
+//		printf(".");
 		MAX3421E_Task();
 		USB_Task();
 		setVelocities(0,0);
@@ -172,9 +177,9 @@ int main() {
 					printf("%x \n", rcode);
 					continue;
 				}
-				printf("keycodes: ");
+//				printf("keycodes: ");
 				for (int i = 0; i < 6; i++) {
-					printf("%x ", kbdbuf.keycode[i]);
+//					printf("%x ", kbdbuf.keycode[i]);
 				}
 				setKeycode(kbdbuf.keycode[0], kbdbuf.keycode[1]);
 				printSignedHex0(kbdbuf.keycode[0]);
@@ -242,6 +247,19 @@ int main() {
 			clearLED(9);
 		}
 
+		int randX = rand()%600;
+		int randY = rand()%400;
+
+		printf(randX);
+		printf(randY);
+		setRandCord(randX, randY);
+
+		usleep(1000);
+
 	}
+
+
+
+
 	return 0;
 }

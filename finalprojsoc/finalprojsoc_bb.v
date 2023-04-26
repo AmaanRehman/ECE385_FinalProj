@@ -24,7 +24,8 @@ module finalprojsoc (
 	usb_irq_export,
 	usb_rst_export,
 	x_velocity_export,
-	y_velocity_export);	
+	y_velocity_export,
+	rand_cord_export);	
 
 	input		clk_clk;
 	output	[15:0]	hex_digits_export;
@@ -51,4 +52,5 @@ module finalprojsoc (
 	output		usb_rst_export;
 	output	[31:0]	x_velocity_export;
 	output	[31:0]	y_velocity_export;
+	output	[19:0]	rand_cord_export;
 endmodule
