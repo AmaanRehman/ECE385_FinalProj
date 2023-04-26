@@ -183,7 +183,7 @@ module finalproj_top (
 	snake s_main (
 		.Reset(Reset_h),
 		.frame_clk(VGA_VS),
-		.keycode(keycode[15:8]),
+		.keycode(keycode),
 		.BallX(ballxsig),
 		.BallY(ballysig),
 		.BallS(ballsizesig),
@@ -192,10 +192,10 @@ module finalproj_top (
 		.y_velocity(y_velocity),
 	);
 	
-	snake s_enemy (
+	snake2 s_enemy (
 		.Reset(Reset_h),
 		.frame_clk(VGA_VS),
-		.keycode(keycode[7:0]),
+		.keycode(keycode),
 		
 		.BallX(snakexsig2),
 		.BallY(snakeysig2),

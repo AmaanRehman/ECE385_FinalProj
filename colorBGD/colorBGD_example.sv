@@ -19,7 +19,9 @@ logic [18:0] rom_address;
 logic [3:0] rom_q;
 
 logic [18:0] rom_address_W, rom_address_S, rom_address_A, rom_address_D;
+logic [18:0] rom_address_W1, rom_address_S1, rom_address_A1, rom_address_D1;
 logic [3:0] rom_q_W, rom_q_S, rom_q_A, rom_q_D;
+logic [3:0] rom_q_W1, rom_q_S1, rom_q_A1, rom_q_D1;
 
 logic [3:0] palette_red, palette_green, palette_blue;
 logic [3:0] snake_palette_red, snake_palette_green, snake_palette_blue;
@@ -38,10 +40,8 @@ assign rom_address = ((DrawX * 640) / 640) + (((DrawY * 480) / 480) * 640);
 
 // ORIGINAL ADDRESS THAT SETS SNAKE HEAD TO FULL SCREEN:
 
-assign rom_address_W = ((DrawX-snakeX_pos+snake_size)) + ((DrawY-snakeY_pos+snake_size) * 24); // Working
-assign rom_address_S = ((DrawX-snakeX_pos+snake_size)) + ((DrawY-snakeY_pos+snake_size) * 24); 
-assign rom_address_A = ((DrawX-snakeX_pos+snake_size)) + ((DrawY-snakeY_pos+snake_size) * 24); 
-assign rom_address_D = ((DrawX-snakeX_pos+snake_size)) + ((DrawY-snakeY_pos+snake_size) * 24); 
+
+ 
 
 
 int DistX, DistY, Size;
@@ -54,6 +54,8 @@ logic snake_on, snake2_on;
 	 
 always_comb
 begin:Snake_on_proc
+
+ rom_address_W1= 0;
 
     if ((DrawX >= snakeX_pos - 12) &&
 		 (DrawX <= snakeX_pos + 11)  &&
@@ -73,23 +75,45 @@ begin:Snake_on_proc
 //		 endcase
 		  
         snake_on = 1'b1;
+		  snake2_on = 1'b0;
+		  
+		  
+		  // Snake 1
+
+		  rom_address_W = ((DrawX-snakeX_pos+snake_size)) + ((DrawY-snakeY_pos+snake_size) * 24); // Working
+		  rom_address_S = ((DrawX-snakeX_pos+snake_size)) + ((DrawY-snakeY_pos+snake_size) * 24); 
+		  rom_address_A = ((DrawX-snakeX_pos+snake_size)) + ((DrawY-snakeY_pos+snake_size) * 24); 
+		  rom_address_D = ((DrawX-snakeX_pos+snake_size)) + ((DrawY-snakeY_pos+snake_size) * 24);
 	
 		end
 		
 		  
-//	 else if ((DrawX >= snake2X_pos - 12) &&
-//				(DrawX <= snake2X_pos + 11)  &&
-//				(DrawY >= snake2Y_pos - 12)  &&
-//				(DrawY <= snake2Y_pos + 11)) begin
-//				
-//			snake2_on = 1'b1;
-//			
-//	 end
+	 else if ((DrawX >= snake2X_pos - 12) &&
+				(DrawX <= snake2X_pos + 11)  &&
+				(DrawY >= snake2Y_pos - 12)  &&
+				(DrawY <= snake2Y_pos + 11)) begin
+				
+			snake_on = 1'b0;
+			snake2_on = 1'b1;
+			
+			// Snake 2
+			
+		  rom_address_W1 = ((DrawX-snake2X_pos+snake_size)) + ((DrawY-snake2Y_pos+snake_size) * 24); // Working
+		  rom_address_S = ((DrawX-snake2X_pos+snake_size)) + ((DrawY-snake2Y_pos+snake_size) * 24); 
+		  rom_address_A = ((DrawX-snake2X_pos+snake_size)) + ((DrawY-snake2Y_pos+snake_size) * 24); 
+		  rom_address_D = ((DrawX-snake2X_pos+snake_size)) + ((DrawY-snake2Y_pos+snake_size) * 24);
+			
+	 end
 	 
 	 else begin
 	 
         snake_on = 1'b0;
-//		  snake2_on = 1'b0;
+		  snake2_on = 1'b0;
+		  
+		  rom_address_W = 0; // Working
+		  rom_address_S = 0; 
+		  rom_address_A = 0; 
+		  rom_address_D = 0;
 		  
 	 end
 		  
@@ -123,6 +147,7 @@ always_ff @ (posedge vga_clk) begin
 			end
 		end
 		
+		
 		else if (snake2_on == 1'b1) begin
 			
 			if ((redPaletteOut == 4'hF) &&
@@ -137,9 +162,9 @@ always_ff @ (posedge vga_clk) begin
 			
 			else begin
 			
-				red <= redPaletteOut;
-				green <= greenPaletteOut;
-				blue <= bluePaletteOut;
+				red <= redPaletteOut1;
+				green <= greenPaletteOut1;
+				blue <= bluePaletteOut1;
 				
 			end	
 		end
@@ -157,69 +182,109 @@ end
 
 // Movement state maching
 
-logic [1:0] motionFlag, motionFlagOut;
-logic Load;
+logic [1:0] motionFlag, motionFlag1, motionFlagOut, motionFlagOut1;
+logic Load, Load1;
 
-move_stateMachine m1(
+move_stateMachineS1 s1(
 					.Clk(Clk),
-					.keycode(keycode[15:8]),
+					.keycode(keycode),
 					.motionFlag(motionFlag),
 					.Load(Load)
 			
 				);
 				
+move_stateMachineS2 s2(
+					.Clk(Clk),
+					.keycode(keycode),
+					.motionFlag(motionFlag1),
+					.Load(Load1)
+			
+				);
+				
 // Register to keep track of motion of snake
 				
-reg_unit #(2) snakeMotion(
+reg_unit #(2) snake1Motion(
 					.Clk(Clk),
 					.Reset(),
 					.Din(motionFlag),
 					.Load(Load),
 					.Data_Out(motionFlagOut));
+					
+reg_unit #(2) snake2Motion(
+					.Clk(Clk),
+					.Reset(),
+					.Din(motionFlag1),
+					.Load(Load1),
+					.Data_Out(motionFlagOut1));
 
 // Multiplexer to Choose Snake Palette
 
-logic [3:0] w_palette_red;
-logic [3:0] a_palette_red;
-logic [3:0] s_palette_red;
-logic [3:0] d_palette_red;
+logic [3:0] w_palette_red, w_palette_red1;
+logic [3:0] a_palette_red, a_palette_red1;
+logic [3:0] s_palette_red, s_palette_red1;
+logic [3:0] d_palette_red, d_palette_red1;
 
-logic [3:0] w_palette_green;
-logic [3:0] a_palette_green;
-logic [3:0] s_palette_green;
-logic [3:0] d_palette_green;
+logic [3:0] w_palette_green, w_palette_green1;
+logic [3:0] a_palette_green, a_palette_green1;
+logic [3:0] s_palette_green, s_palette_green1;
+logic [3:0] d_palette_green, d_palette_green1;
 
-logic [3:0] w_palette_blue;
-logic [3:0] a_palette_blue;
-logic [3:0] s_palette_blue;
-logic [3:0] d_palette_blue;
+logic [3:0] w_palette_blue, w_palette_blue1;
+logic [3:0] a_palette_blue, a_palette_blue1;
+logic [3:0] s_palette_blue, s_palette_blue1;
+logic [3:0] d_palette_blue, d_palette_blue1;
 
-logic [3:0] redPaletteOut;
-logic [3:0] greenPaletteOut;
-logic [3:0] bluePaletteOut;
+logic [3:0] redPaletteOut, redPaletteOut1;
+logic [3:0] greenPaletteOut, greenPaletteOut1;
+logic [3:0] bluePaletteOut, bluePaletteOut1;
 
 
+// Snake 1
 
 mux_4_1_16	redPaletteMux(.A(w_palette_red),
-								  .B(a_palette_red),
-								  .C(s_palette_red),
-								  .D(d_palette_red),
-								  .SelectBit(motionFlagOut),
-								  .Out(redPaletteOut));
-								 
+								   .B(a_palette_red),
+								   .C(s_palette_red),
+								   .D(d_palette_red),
+								   .SelectBit(motionFlagOut),
+								   .Out(redPaletteOut));
+								
 mux_4_1_16	greenPaletteMux(.A(w_palette_green),
-								  .B(a_palette_green),
-								  .C(s_palette_green),
-								  .D(d_palette_green),
-								  .SelectBit(motionFlagOut),
-								  .Out(greenPaletteOut));
+								     .B(a_palette_green),
+								     .C(s_palette_green),
+								     .D(d_palette_green),
+								     .SelectBit(motionFlagOut),
+								     .Out(greenPaletteOut));
 								  
 mux_4_1_16	bluePaletteMux(.A(w_palette_blue),
-								  .B(a_palette_blue),
-								  .C(s_palette_blue),
-								  .D(d_palette_blue),
-								  .SelectBit(motionFlagOut),
-								  .Out(bluePaletteOut));
+								    .B(a_palette_blue),
+								    .C(s_palette_blue),
+								    .D(d_palette_blue),
+								    .SelectBit(motionFlagOut),
+								    .Out(bluePaletteOut));
+								  
+								  
+// Snake 2
+
+mux_4_1_16	redPaletteMux1(.A(w_palette_red1),
+								   .B(a_palette_red),
+								   .C(s_palette_red),
+								   .D(d_palette_red),
+								   .SelectBit(motionFlagOut1),
+								   .Out(redPaletteOut1));
+								 
+mux_4_1_16	greenPaletteMux1(.A(w_palette_green1),
+								     .B(a_palette_green),
+								     .C(s_palette_green),
+								     .D(d_palette_green),
+								     .SelectBit(motionFlagOut1),
+								     .Out(greenPaletteOut1));
+								  
+mux_4_1_16	bluePaletteMux1(.A(w_palette_blue1),
+								    .B(a_palette_blue),
+								    .C(s_palette_blue),
+								    .D(d_palette_blue),
+								    .SelectBit(motionFlagOut1),
+								    .Out(bluePaletteOut1));
 	
 	
 // Background Data
@@ -238,7 +303,7 @@ colorBGD_palette colorBGD_palette (
 );
 
 
-// Snake Data
+// Snake 1 Data
 
 up_head_p1_rom SnakeHead_W_rom (
 	.clock   (negedge_vga_clk),
@@ -290,6 +355,25 @@ right_head_p1_palette SnakeHead_D_palette (
 	.red   (d_palette_red),
 	.green (d_palette_green),
 	.blue  (d_palette_blue)
-);															
+);
+
+
+up_head_p2_rom up_head_p2_rom (
+	.clock   (negedge_vga_clk),
+	.address (rom_address_W1),
+	.q       (rom_q_W1)
+);
+
+up_head_p2_palette up_head_p2_palette (
+	.index (rom_q_W1),
+	.red   (w_palette_red1),
+	.green (w_palette_green1),
+	.blue  (w_palette_blue1)
+);	
+
+
+// Snake 2 Data
+
+													
 
 endmodule
