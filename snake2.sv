@@ -17,6 +17,10 @@ module  snake2 ( input Reset, frame_clk,
 					input [15:0] keycode,
 					input [8:0] x_velocity, y_velocity,
                output [9:0]  BallX, BallY, BallS,
+					
+					// Motion Flag
+					input [1:0] motionFlag,
+					input logic OB2Flag,
 					output logic [9:0] LEDR);
     
     logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion, Ball_Size;
@@ -81,8 +85,10 @@ module  snake2 ( input Reset, frame_clk,
 							 end
 							  
 					8'h52 : begin
-					        Ball_Y_Motion <= -1;//W
+					
+							  Ball_Y_Motion <= -1;//W
 							  Ball_X_Motion <= 0;
+					        
 							 end	  
 					default: ;
 			   endcase
@@ -129,12 +135,46 @@ module  snake2 ( input Reset, frame_clk,
 				begin 
 					LEDR[1] = 1; 
 				end 
+				
+				if (!OB2Flag) begin
 
-				 Ball_Y_Pos <= (Ball_Y_Pos + Ball_Y_Motion);  // Update ball position
-				 Ball_X_Pos <= (Ball_X_Pos + Ball_X_Motion);
-			
-      
-			
+					Ball_Y_Pos <= (Ball_Y_Pos + Ball_Y_Motion);  // Update ball position
+					Ball_X_Pos <= (Ball_X_Pos + Ball_X_Motion);
+				end
+				
+				else begin
+				
+					case (motionFlag) 
+					
+						2'b00: begin		// W
+							
+							Ball_Y_Pos <= (Ball_Y_Pos + 1);  // Keep ball position
+							Ball_X_Pos <= (Ball_X_Pos + 0);
+							
+						end
+						
+						2'b01: begin		// A
+						
+							Ball_Y_Pos <= (Ball_Y_Pos + 0);
+						   Ball_X_Pos <= (Ball_X_Pos + 1);
+							
+						end
+						
+						2'b10: begin		// S
+						
+							Ball_Y_Pos <= (Ball_Y_Pos - 1);
+						   Ball_X_Pos <= (Ball_X_Pos + 0);
+							
+						end
+						
+						2'b11: begin		// D
+						
+							Ball_Y_Pos <= (Ball_Y_Pos + 0);
+						   Ball_X_Pos <= (Ball_X_Pos - 1);
+							
+						end
+					endcase
+				end
 		end  
     end
        

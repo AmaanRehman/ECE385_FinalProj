@@ -123,6 +123,12 @@ module finalproj_top (
 	
 	logic [8:0] x_velocity;
 	logic [8:0] y_velocity;
+
+
+	// Obstacle Flags
+
+	logic OB1Flag, OB2Flag;
+	logic [1:0] motionFlag1, motionFlag2;
 	
 	finalprojsoc u0 (
 		.clk_clk                           (MAX10_CLK1_50),  //clk.clk
@@ -198,6 +204,11 @@ module finalproj_top (
 		
 		.x_velocity(x_velocity),
 		.y_velocity(y_velocity),
+
+		// Obstacle Flag Inputs
+		
+		.motionFlag(motionFlag1),
+		.OB1Flag(OB1Flag)		
 	);
 	
 	snake2 s_enemy (
@@ -211,6 +222,9 @@ module finalproj_top (
 		
 		.x_velocity(x_velocity),
 		.y_velocity(y_velocity),
+		
+		.motionFlag(motionFlag2),
+		.OB2Flag(OB2Flag)
 	);
 	
 
@@ -231,6 +245,7 @@ module finalproj_top (
 		.reset(Reset_h),
 		.keycode(keycode),
 		.vga_clk(VGA_Clk),
+		.frame_clk(VGA_VS),
 		.DrawX(drawxsig),
 		.DrawY(drawysig),
 		.blank(blank),
@@ -245,7 +260,14 @@ module finalproj_top (
 		.snake_size(ballsizesig),
 		
 		.randCord(randCord),
+
+		// Obstacle Flag Outputs
 		
+		
+		.motionFlag1Out(motionFlag1),
+		.motionFlag2Out(motionFlag2),
+		.OB1Flag(OB1Flag),
+		.OB2Flag(OB2Flag),
 		.LED(LEDR)
 		
 	);

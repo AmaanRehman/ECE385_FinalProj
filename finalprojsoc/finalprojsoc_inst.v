@@ -4,6 +4,7 @@
 		.key_external_connection_export (<connected-to-key_external_connection_export>), // key_external_connection.export
 		.keycode_export                 (<connected-to-keycode_export>),                 //                 keycode.export
 		.leds_export                    (<connected-to-leds_export>),                    //                    leds.export
+		.rand_cord_export               (<connected-to-rand_cord_export>),               //               rand_cord.export
 		.reset_reset_n                  (<connected-to-reset_reset_n>),                  //                   reset.reset_n
 		.sdram_clk_clk                  (<connected-to-sdram_clk_clk>),                  //               sdram_clk.clk
 		.sdram_wire_addr                (<connected-to-sdram_wire_addr>),                //              sdram_wire.addr
@@ -23,7 +24,6 @@
 		.usb_irq_export                 (<connected-to-usb_irq_export>),                 //                 usb_irq.export
 		.usb_rst_export                 (<connected-to-usb_rst_export>),                 //                 usb_rst.export
 		.x_velocity_export              (<connected-to-x_velocity_export>),              //              x_velocity.export
-		.y_velocity_export              (<connected-to-y_velocity_export>),              //              y_velocity.export
-		.rand_cord_export               (<connected-to-rand_cord_export>)                //               rand_cord.export
+		.y_velocity_export              (<connected-to-y_velocity_export>)               //              y_velocity.export
 	);
 

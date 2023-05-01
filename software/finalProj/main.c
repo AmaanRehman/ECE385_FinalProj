@@ -157,7 +157,7 @@ int main() {
 	printf("initializing USB...\n");
 	USB_init();
 	while (1) {
-//		printf(".");
+		printf(".");
 		MAX3421E_Task();
 		USB_Task();
 		setVelocities(0,0);
@@ -177,9 +177,9 @@ int main() {
 					printf("%x \n", rcode);
 					continue;
 				}
-//				printf("keycodes: ");
+				printf("keycodes: ");
 				for (int i = 0; i < 6; i++) {
-//					printf("%x ", kbdbuf.keycode[i]);
+					printf("%x ", kbdbuf.keycode[i]);
 				}
 				setKeycode(kbdbuf.keycode[0], kbdbuf.keycode[1]);
 				printSignedHex0(kbdbuf.keycode[0]);
@@ -250,11 +250,11 @@ int main() {
 		int randX = rand()%600;
 		int randY = rand()%400;
 
-		printf(randX);
-		printf(randY);
+//		printf(randX);
+//		printf(randY);
 		setRandCord(randX, randY);
 
-		usleep(1000);
+		usleep(4000);
 
 	}
 

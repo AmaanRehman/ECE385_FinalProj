@@ -5,6 +5,7 @@
 			key_external_connection_export : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- export
 			keycode_export                 : out   std_logic_vector(15 downto 0);                    -- export
 			leds_export                    : out   std_logic_vector(13 downto 0);                    -- export
+			rand_cord_export               : out   std_logic_vector(19 downto 0);                    -- export
 			reset_reset_n                  : in    std_logic                     := 'X';             -- reset_n
 			sdram_clk_clk                  : out   std_logic;                                        -- clk
 			sdram_wire_addr                : out   std_logic_vector(12 downto 0);                    -- addr
@@ -24,8 +25,7 @@
 			usb_irq_export                 : in    std_logic                     := 'X';             -- export
 			usb_rst_export                 : out   std_logic;                                        -- export
 			x_velocity_export              : out   std_logic_vector(31 downto 0);                    -- export
-			y_velocity_export              : out   std_logic_vector(31 downto 0);                    -- export
-			rand_cord_export               : out   std_logic_vector(19 downto 0)                     -- export
+			y_velocity_export              : out   std_logic_vector(31 downto 0)                     -- export
 		);
 	end component finalprojsoc;
 
@@ -36,6 +36,7 @@
 			key_external_connection_export => CONNECTED_TO_key_external_connection_export, -- key_external_connection.export
 			keycode_export                 => CONNECTED_TO_keycode_export,                 --                 keycode.export
 			leds_export                    => CONNECTED_TO_leds_export,                    --                    leds.export
+			rand_cord_export               => CONNECTED_TO_rand_cord_export,               --               rand_cord.export
 			reset_reset_n                  => CONNECTED_TO_reset_reset_n,                  --                   reset.reset_n
 			sdram_clk_clk                  => CONNECTED_TO_sdram_clk_clk,                  --               sdram_clk.clk
 			sdram_wire_addr                => CONNECTED_TO_sdram_wire_addr,                --              sdram_wire.addr
@@ -55,7 +56,6 @@
 			usb_irq_export                 => CONNECTED_TO_usb_irq_export,                 --                 usb_irq.export
 			usb_rst_export                 => CONNECTED_TO_usb_rst_export,                 --                 usb_rst.export
 			x_velocity_export              => CONNECTED_TO_x_velocity_export,              --              x_velocity.export
-			y_velocity_export              => CONNECTED_TO_y_velocity_export,              --              y_velocity.export
-			rand_cord_export               => CONNECTED_TO_rand_cord_export                --               rand_cord.export
+			y_velocity_export              => CONNECTED_TO_y_velocity_export               --              y_velocity.export
 		);
 

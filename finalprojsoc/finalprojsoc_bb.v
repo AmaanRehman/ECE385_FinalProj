@@ -5,6 +5,7 @@ module finalprojsoc (
 	key_external_connection_export,
 	keycode_export,
 	leds_export,
+	rand_cord_export,
 	reset_reset_n,
 	sdram_clk_clk,
 	sdram_wire_addr,
@@ -24,14 +25,14 @@ module finalprojsoc (
 	usb_irq_export,
 	usb_rst_export,
 	x_velocity_export,
-	y_velocity_export,
-	rand_cord_export);	
+	y_velocity_export);	
 
 	input		clk_clk;
 	output	[15:0]	hex_digits_export;
 	input	[1:0]	key_external_connection_export;
 	output	[15:0]	keycode_export;
 	output	[13:0]	leds_export;
+	output	[19:0]	rand_cord_export;
 	input		reset_reset_n;
 	output		sdram_clk_clk;
 	output	[12:0]	sdram_wire_addr;
@@ -52,5 +53,4 @@ module finalprojsoc (
 	output		usb_rst_export;
 	output	[31:0]	x_velocity_export;
 	output	[31:0]	y_velocity_export;
-	output	[19:0]	rand_cord_export;
 endmodule
