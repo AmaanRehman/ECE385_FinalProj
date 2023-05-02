@@ -15,14 +15,17 @@ enum logic [3:0] {Halted,
 						WaitState3,
 						WaitState4,
 						WaitState5,
-						WaitState6} State, Next_state;
+						WaitState6,
+						WaitState7,
+						WaitState8,
+						WaitState9} State, Next_state;
 						
 						
 logic bulletDirLatch;
 
 //logic [6:0] counter;
 
-always_ff @ (posedge Clk) begin
+always_ff @ (posedge Clk or posedge Reset) begin
 
 	if (Reset)
 		State <= Halted;
@@ -33,8 +36,6 @@ always_ff @ (posedge Clk) begin
 		
 		
 	end
-		
-		
 	
 end
 
@@ -65,39 +66,26 @@ always_comb begin
 		WaitState2: begin
 		
 			if (collision) Next_state = WaitState2;
+			else Next_state = WaitState3;
+		
+		end
+		
+		WaitState3: begin
+		
+			if (collision) Next_state = WaitState3;
 			else Next_state = Health2;
 		
 		end
 		
 		Health2: begin
 		
-			if (collision) Next_state = WaitState3;
+			if (collision) Next_state = WaitState4;
 				
-		end
-		
-		WaitState3: begin
-		
-			if (collision) Next_state = WaitState3;
-			else Next_state = WaitState4;
-		
 		end
 		
 		WaitState4: begin
 		
-			if (collision) Next_state = WaitState2;
-			else Next_state = Health1;
-		
-		end
-		
-		Health1: begin
-		
-			if (collision) Next_state = WaitState5;
-		
-		end
-		
-		WaitState5: begin
-		
-			if (collision) Next_state = WaitState5;
+			if (collision) Next_state = WaitState4;
 			else Next_state = WaitState5;
 		
 		end
@@ -105,6 +93,40 @@ always_comb begin
 		WaitState5: begin
 		
 			if (collision) Next_state = WaitState5;
+			else Next_state = WaitState6;
+		
+		end
+		
+		WaitState6: begin
+		
+			if (collision) Next_state = WaitState6;
+			else Next_state = Health1;
+		
+		end
+		
+		Health1: begin
+		
+			if (collision) Next_state = WaitState7;
+		
+		end
+		
+		WaitState7: begin
+		
+			if (collision) Next_state = WaitState7;
+			else Next_state = WaitState8;
+		
+		end
+		
+		WaitState8: begin
+		
+			if (collision) Next_state = WaitState8;
+			else Next_state = Health0;
+		
+		end
+		
+		WaitState9: begin
+		
+			if (collision) Next_state = WaitState9;
 			else Next_state = Health0;
 		
 		end
@@ -124,12 +146,17 @@ always_comb begin
 		Health3		:	healthCount = 2'b11;
 		WaitState1	:	healthCount = 2'b11;
 		WaitState2	:	healthCount = 2'b11;
+		WaitState3	:	healthCount = 2'b11;
+		
 		Health2		:	healthCount = 2'b10;
-		WaitState3	:	healthCount = 2'b10;
 		WaitState4	:	healthCount = 2'b10;
+		WaitState5	:	healthCount = 2'b10;
+		WaitState6	:	healthCount = 2'b10;
+		
 		Health1		:	healthCount = 2'b01;
-		WaitState5	:	healthCount = 2'b01;
-		WaitState6	:	healthCount = 2'b01;
+		WaitState7	:	healthCount = 2'b01;
+		WaitState8	:	healthCount = 2'b01;
+		WaitState9	:	healthCount = 2'b01;
 		
 		Health0		:	begin
 		

@@ -1,0 +1,63 @@
+module ISDU (input logic Clk,
+				 input logic [15:0] keycode,
+				 output logic LD_MENU,
+				 output logic LD_Map1,
+				 output logic Pause_En);
+				 
+				 
+enum logic [2:0] {Halted,
+						MainMenu,
+						Play_M1} State, Next_state;
+						
+
+always_ff @ (posedge Clk) begin
+
+	if (Reset)
+		State <= Halted;
+	else
+		State <= Next_state;
+	
+end
+
+always_comb begin
+
+	Next_state = State;
+	
+	LD_MENU  = 1'b0;
+	LD_Map1  = 1'b0;
+	Pause_En = 1'b0;
+	
+	unique case (State)
+	
+		Halted: Next_state = MainMenu;
+		
+		MainMenu: begin
+		
+				if (keycode[15:8] == 8'd40 || keycode[7:0] == 8'd40) begin
+				
+					Next_state = Play_M1;
+					
+				end
+				
+				else Next_state = MainMenu;
+		end
+		
+		Play_M1: ;
+		
+		default: ;
+	
+	endcase
+	
+	
+	case (State)
+	
+		Halted: ;
+		
+		MainMenu : LD_MENU = 1'b1;
+		
+		Play_M1  : LD_Map1 = 1'b1; 
+		
+end
+
+
+endmodule

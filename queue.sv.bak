@@ -1,0 +1,100 @@
+module queue 
+#(parameter data_width = 4,
+				address_width = 4,
+				max_data = 2**address_width)
+(
+	input logic Clk, Reset,
+	input logic read_en, write_en,
+	input logic [data_width-1:0] write_data,
+	output logic [data_width-1:0] read_data,
+	output logic full,
+	output logic empty
+	
+);
+
+logic [data_width-1:0] queue_reg [max_data-1:0];
+logic [address_width-1:0] front_reg, front_next;
+logic [address_width-1:0] rear_reg, rear_next;
+logic full_reg, full_next;
+logic empty_reg, empty_next;
+
+assign full = full_reg;
+assign empty = empty_reg;
+
+assign logic write_enable = write_en & !full_reg;
+
+always_ff @(posedge Clk) begin
+
+	if (write_enable)
+		queue_reg[rear_reg] <= write_data;
+		
+	else if (read_en)
+	read_data <= queue_reg[front_reg];
+	
+end
+
+always_ff @(posedge Clk, posedge Reset) begin
+
+	if (Reset) begin
+		empty_reg <= 1'b1;
+		full_reg  <= 1'b0;
+		front_reg <= 0;
+		rear_reg	 <= 0;
+	end
+	
+	else begin
+		front_reg <= front_next;
+		rear_reg <= rear_next;
+		full_reg <= full_next;
+		empty_reg <= empty_next;
+	end
+end
+
+
+always_comb begin
+
+	front_next = front_reg;
+	rear_next = rear_reg;
+	full_next = full_reg;
+	empty_next = empty_next;
+	
+	// Read operation
+	
+	if (read_en == 1'b1) begin
+		
+		if (!empty_reg) begin
+			
+			full_next = 1'b0;
+			front_next = front_reg + 1;
+			
+			if (front_next == rear_reg)
+				empty_next = 1'b1;
+			
+		end
+	end
+	
+	// Write Operation
+	
+	else if (write_en == 1'b1) begin
+	
+		if (!full_reg) begin
+			
+			empty_next = 1'b1;
+			rear_next = rear_reg + 1;
+			
+			if (rear_next == front_reg)
+				full_next = 1'b1;
+		end
+	end
+	
+	else if (write_en && read_en) begin
+	
+		front_next = front_reg + 1;
+		rear_next = rear_next + 1;
+	
+	end
+
+end
+
+
+endmodule

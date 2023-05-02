@@ -1,0 +1,90 @@
+module venom_stateMachine(input logic Clk,
+									input logic Reset,
+									input logic collision,
+									output logic [1:0] healthCount
+									output logic gameEnd);
+				 
+				 
+enum logic [2:0] {Halted, 
+						Health3,
+						Health2,
+						Health1,
+						Health0} State, Next_state;
+						
+						
+logic bulletDirLatch;
+
+always_ff @ (posedge Clk) begin
+
+	if (Reset)
+		State <= Halted;
+	else
+		State <= Next_state;
+		
+	if (bulletDirLatch) bulletDir <= motionFlag;
+	
+end
+
+always_comb begin
+
+	Next_state = State;
+	
+	healthCount = 2'b10;
+	gameEnd = 1'b0;
+	
+	unique case (State)
+	
+		Halted: Next_state = Health3;
+		
+		Health3: begin
+		
+			if (collision) Next_state = Health2;
+		
+		end
+		
+		Health2: begin
+		
+			if (collision) Next_state = Health1;
+				
+		end
+		
+		Health1: begin
+		
+			if (collision) Next_state = Health0;
+		
+		end
+		
+		Health0: ;
+				
+		
+		default: ;
+	
+	endcase
+	
+	
+	case (State)
+	
+		Halted: ;
+		
+		Health3	:	healthCount = 2'b11;
+	
+		Health2	:	healthCount = 2'b10;
+		
+		Health1	:	healthCount = 2'b01;
+		
+		Health0	:	begin
+		
+			healthCount = 2'b00;
+			gameEnd		= 1'b1;
+			
+		end
+		
+		
+		default: ;
+		
+	endcase
+		
+end
+
+
+endmodule

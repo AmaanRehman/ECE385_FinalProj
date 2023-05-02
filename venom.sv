@@ -116,10 +116,6 @@ module  venom ( input Reset, frame_clk, vga_clk,
 						end
 						
 					endcase
-					
-					if (venomMovement) begin
-					
-					end
 				
 			end
 				

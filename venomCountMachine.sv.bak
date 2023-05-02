@@ -1,0 +1,80 @@
+module venomCountMachine(input logic Clk,
+									input logic Reset,
+									input logic [15:0] keycode,
+									output logic [1:0] venomCount);
+				 
+				 
+enum logic [2:0] {Halted, 
+						Venom1,
+						Venom2,
+						Venom3} State, Next_state;
+						
+						
+logic bulletDirLatch;
+
+always_ff @ (posedge Clk) begin
+
+	if (Reset)
+		State <= Halted;
+	else
+		State <= Next_state;
+	
+end
+
+always_comb begin
+
+	Next_state = State;
+	
+	venomCount = 2'b00;
+	
+	unique case (State)
+	
+		Halted: Next_state = Idle;
+		
+		Venom1: begin
+		
+				if (keycode[15:8] == 8'd44  || keycode[7:0] == 8'd44 ) begin
+				
+					Next_state = Venom2;
+					
+				end
+				
+				else Next_state = Venom1;
+		end
+		
+		Venom2: begin
+		
+				if (keycode[15:8] == 8'd44  || keycode[7:0] == 8'd44 ) begin
+				
+					Next_state = Venom3;
+					
+				end
+				
+				else Next_state = Venom3;
+				
+		end
+		
+		Venom3: Next_state = Venom1;
+				
+		
+		default: ;
+	
+	endcase
+	
+	
+	case (State)
+	
+		Halted: ;
+		
+		Venom1	:	venomCount = 2'b00;
+		Venom2	:	venomCount = 2'b01;
+		Venom3	:	venomCount = 2'b11;
+		
+		default: ;
+		
+	endcase
+		
+end
+
+
+endmodule

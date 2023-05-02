@@ -1,0 +1,36 @@
+module move_stateMachine(
+			input  logic Clk,
+			input  logic [7:0] keycode,
+			output logic [1:0] motionFlag);
+			
+			
+enum logic [3:0] {HALTED,
+						W,
+						A,
+						S,
+						D} State, Next_State;
+						
+//always ff @ (posedge Clk)
+//begin
+//	
+//	if (Reset)
+//		State <= HALTED;
+//	else
+//		State <= Next_State;
+//	
+//end
+
+always_comb 
+begin
+
+	Next_State = State;
+	
+	unique case (keycode)
+	
+		8'h1A	:	motionFlag = 2'b00;	// W
+		8'h04	:	motionFlag = 2'b01;	// A
+		8'h16	:	motionFlag = 2'b10;	// S
+		8'h07	:	motionFlag = 2'b11;	// D
+		
+	endcase
+end

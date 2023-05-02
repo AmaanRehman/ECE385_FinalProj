@@ -136,7 +136,7 @@ logic snake_on, snake2_on, Wall_on;
 
 logic LD_MENU, LD_Map1;
 
-ISDU isdu1 (.Clk(vga_clk),
+ISDU isdu1 (.Clk(Clk),
 				.Reset(reset),
 				.keycode(keycode),
 				.LD_MENU(LD_MENU),
@@ -424,7 +424,7 @@ end
 logic [1:0] snake2HealthCount;
 logic snake1Won;
 
-health_stateMachine S2 (.Clk(Clk),
+health_stateMachine S2 (.Clk(vga_clk),
 								.Reset(reset),
 								.collision((venom1_on && snake2_on)||(venom2_on && snake2_on)||(venom3_on && snake2_on)),
 								.healthCount(snake2HealthCount),
