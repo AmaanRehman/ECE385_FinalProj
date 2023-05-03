@@ -203,15 +203,16 @@ keyboard_posedge_detector (.keyboard_input(keycode),
 
 logic [1:0] venomCount;
 //assign LED[1:0] = venomCount;
-assign LED[2] = venom1_movement;
-assign LED[3] = venom2_movement;
-assign LED[4] = venom3_movement;
+//assign LED[2] = venom1_movement;
+//assign LED[3] = venom2_movement;
+//assign LED[4] = venom3_movement;
 
 venomCountMachine VenomCS1 (.Clk(Clk),
 									 .Reset(reset),
 									 .keycode(keycode),
 									 .expectedKeycode(8'd44),
-									 .venomCount(venomCount));
+									 .venomCount(venomCount),
+									 .reload(S1_ateApple));
 
 venom venomS1_1(.Reset(reset),
 					 .frame_clk(frame_clk),
@@ -430,7 +431,7 @@ health_stateMachine S2 (.Clk(vga_clk),
 								.healthCount(snake2HealthCount),
 								.gameEnd(snake1Won));
 								
-assign LED[1:0] = snake2HealthCount;
+//assign LED[1:0] = snake2HealthCount;
 //assign LED[2] = venom1_on;
 //assign LED[3] = snake2_on;
 
@@ -484,6 +485,155 @@ begin: Snake2Health
 	
 	end
 		
+end
+
+logic [9:0] x,y, x_out, y_out;
+logic LoadX, LoadY;
+
+//assign LED[9:0] = y_out;
+
+VGA_Random_Coords XCoord1 (.Clk(vga_clk),
+								  .reset(reset),
+								  .seedIn(randCord[7]),
+								  .rnd(x));
+								  
+VGA_Random_Coords YCoord1 (.Clk(vga_clk),
+								  .reset(reset),
+								  .seedIn(randCord[3]),
+								  .rnd(y));
+								  
+
+reg_unit #(10) randomX(
+					.Clk(Clk),
+					.Reset(reset),							/// Might have to change this to game reset						
+					.Din(x),
+					.Load(LoadX),
+					.Data_Out(x_out));
+					
+reg_unit #(10) randomY(
+					.Clk(Clk),
+					.Reset(reset),							/// Might have to change this to game reset						
+					.Din(y),
+					.Load(LoadY),
+					.Data_Out(y_out));
+					
+					
+always_comb begin
+
+	LoadX = 1'b0;
+	LoadY = 1'b0;
+	LED[3:0] = 0;
+
+	if (x_out >= 10'd600 || y_out >= 10'd400) begin 
+		
+		LoadX = 1'b1;
+		LoadY = 1'b1;
+		
+		LED[0] = 1'b1;
+		
+	end
+	
+	else begin
+
+		if (((DrawX == x_out) && (DrawY == y_out))) begin
+		
+			if (x_out >= 10'd600 || y_out >= 10'd400) begin 
+			
+				LoadX = 1'b1;
+				LoadY = 1'b1;
+				
+				LED[1] = 1'b1;
+			
+			end
+		
+			else if ((Wall_on || snake_on || snake2_on)) begin
+			
+				LoadX = 1'b1;
+				LoadY = 1'b1;
+				
+				LED[2] = 1'b1;
+			
+			end 
+			
+			else if (x == x_out || y == y_out) begin
+			
+				LoadX = 1'b1;
+				LoadY = 1'b1;
+				
+				LED[3] = 1'b1;
+				
+			end
+			
+			else begin
+			
+				LoadX = 1'b0;
+				LoadY = 1'b0;
+				
+			
+			end
+		end
+	end
+	
+//	else begin
+//	
+//		LoadX = 1'b0;
+//		LoadY = 1'b0;
+//	
+//	end
+
+end
+
+logic apple_on;
+
+always_comb
+begin
+
+	if ((DrawX >= x_out - 8)  &&
+		 (DrawX <= x_out + 8)  &&
+		 (DrawY >= y_out - 8)  &&
+		 (DrawY <= y_out + 8)) begin
+		
+			apple_on = 1'b1;
+		
+	end
+	
+	else apple_on = 1'b0;
+	
+end
+
+logic S1_ateApple;
+
+always_comb
+begin
+
+	if (apple_on && snake_on) begin
+	
+		S1_ateApple = 1'b1;
+	
+	end
+	
+	else S1_ateApple = 1'b0;
+	
+
+end
+					
+logic [31:0] counter;
+						 
+Second_Counter (.clk_60Hz(frame_clk),
+					 .reset(reset),
+					 .count(counter));
+					 
+
+always_ff @ (posedge frame_clk) begin
+
+	if (counter == 31'd15) begin
+	
+		
+		
+	end
+	
+//	else LoadX = 1'b0;
+
 end
 
 
@@ -574,6 +724,9 @@ always_ff @ (posedge vga_clk) begin
 		
 		else if (LD_Map1) begin
 
+			
+		// Snake 1 Drawing
+
 		if (snake_on == 1'b1) begin
 		
 			if ((redPaletteOut == 4'hF) &&
@@ -596,6 +749,8 @@ always_ff @ (posedge vga_clk) begin
 						
 		end
 		
+		
+		// Snake 2 Drawing
 		
 		else if (snake2_on == 1'b1) begin
 			
@@ -625,6 +780,7 @@ always_ff @ (posedge vga_clk) begin
 			blue <= palette_blue;
 			
 		end
+		
 		
 			/// Random Block Generation
 
@@ -839,24 +995,25 @@ always_ff @ (posedge vga_clk) begin
 //				LED[7] = 1'b0;
 //				
 //			end
-			// Bullet Drawing
+			
+			// Venom Drawing Under Snake
 			
 			if (venom1_on) begin
-			
-				red <= 4'h0;
-				green <= 4'h0;
-				blue <= 4'h0;
-			
-			end
-			
+				
+					red <= VS1_1_red;
+					green <= VS1_1_green;
+					blue <= VS1_1_blue;
+				
+				end
+				
 			else if (venom2_on) begin
-			
-				red <= 4'h0;
-				green <= 4'h0;
-				blue <= 4'h0;
-			
-			end
-			
+				
+					red <= 4'h0;
+					green <= 4'h0;
+					blue <= 4'h0;
+				
+				end
+				
 			else if (venom3_on) begin
 			
 				red <= 4'h0;
@@ -864,7 +1021,6 @@ always_ff @ (posedge vga_clk) begin
 				blue <= 4'h0;
 			
 			end
-			
 			
 			if (heart1on) begin
 			
@@ -936,6 +1092,14 @@ always_ff @ (posedge vga_clk) begin
 						green <= paletteHeart_green5;
 						blue <= paletteHeart_blue5;
 				end			
+			end
+			
+			if (apple_on) begin
+			
+				red <= 4'h0;
+				green <= 4'h0;
+				blue <= 4'h0;
+			
 			end
 			
 			
@@ -1562,6 +1726,29 @@ heart_palette heart_palette5 (
 	.red   (paletteHeart_red5),
 	.green (paletteHeart_green5),
 	.blue  (paletteHeart_blue5)
+);
+
+
+// Venom Data
+
+logic [5:0] venomS1_1_romAddress;
+logic rom_VS1_1;
+
+assign venomS1_1_romAddress = ((DrawX-Venom1X+4)) + ((DrawY-Venom1Y+4) * 8);
+
+logic [3:0] VS1_1_red, VS1_1_green, VS1_1_blue;
+
+Venom_rom Venom_rom (
+	.clock   (negedge_vga_clk),
+	.address (venomS1_1_romAddress),
+	.q       (rom_VS_1)
+);
+
+Venom_palette Venom_palette (
+	.index (rom_VS_1),
+	.red   (VS1_1_red),
+	.green (VS1_1_green),
+	.blue  (VS1_1_blue)
 );
 
 

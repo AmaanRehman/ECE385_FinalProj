@@ -4366,3 +4366,9 @@ java.lang.Exception
 
 !ENTRY com.altera.sbtgui.launch 1 0 2023-05-02 11:01:19.807
 !MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x8001068 /cygdrive/c/Users/amaan/Documents/ECE385_FinalProj/software/finalProj/finalProj.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2023-05-02 14:18:12.650
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x8001068]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2023-05-02 14:18:15.315
+!MESSAGE Executing: [C:/intelfpga_lite/18.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x8001068 /cygdrive/c/Users/amaan/Documents/ECE385_FinalProj/software/finalProj/finalProj.elf]

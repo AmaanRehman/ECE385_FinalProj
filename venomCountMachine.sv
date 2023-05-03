@@ -2,6 +2,7 @@ module venomCountMachine(input logic Clk,
 									input logic Reset,
 									input logic [15:0] keycode,
 									input logic [7:0] expectedKeycode,
+									input logic reload,
 									output logic [1:0] venomCount);
 				 
 				 
@@ -107,7 +108,17 @@ always_comb begin
 		
 		end
 		
-		Reload_Venom: Next_state = Reload_Venom;
+		Reload_Venom: begin
+		
+			if (reload) begin
+			
+				Next_state = Venom1;
+				
+			end
+		
+			else Next_state = Reload_Venom;
+			
+		end
 				
 		
 		default: ;

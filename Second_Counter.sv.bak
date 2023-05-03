@@ -1,0 +1,30 @@
+module Second_Counter (
+  input clk_60Hz,
+  output reg [31:0] counter
+);
+
+  // Define the clock frequency and period
+  parameter CLOCK_FREQ = 60; // Hz
+  parameter CLOCK_PERIOD = 1_000_000_000 / CLOCK_FREQ; // in nanoseconds
+
+  // Declare a register to hold the elapsed time
+  logic [31:0] time;
+
+  // Initialize the counter and elapsed time on reset
+  always_ff @(posedge clk_60Hz) begin
+    if (rst) begin
+      counter <= 0;
+      time <= 0;
+    end else begin
+      // Increment the elapsed time every clock cycle
+      time <= time + CLOCK_PERIOD;
+
+      // If one second has elapsed, increment the counter
+      if (time >= 1_000_000_000) begin
+        counter <= counter + 1;
+        time <= 0;
+      end
+    end
+  end
+
+endmodule
