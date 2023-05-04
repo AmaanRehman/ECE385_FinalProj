@@ -72,6 +72,7 @@ module finalproj_top (
 	logic [7:0] Red, Blue, Green;
 	logic [15:0] keycode;
 	logic [19:0] randCord;
+	logic endGame;
 
 //=======================================================
 //  Structural coding
@@ -195,7 +196,7 @@ module finalproj_top (
 	);
 	
 	snake s_main (
-		.Reset(Reset_h),
+		.Reset(Reset_h | endGame),
 		.frame_clk(VGA_VS),
 		.keycode(keycode),
 		.BallX(ballxsig),
@@ -208,11 +209,12 @@ module finalproj_top (
 		// Obstacle Flag Inputs
 		
 		.motionFlag(motionFlag1),
-		.OB1Flag(OB1Flag)		
+		.OB1Flag(OB1Flag)	,
+		.LEDR(LEDR)
 	);
 	
 	snake2 s_enemy (
-		.Reset(Reset_h),
+		.Reset(Reset_h | endGame),
 		.frame_clk(VGA_VS),
 		.keycode(keycode),
 		
@@ -259,6 +261,8 @@ module finalproj_top (
 		.snake2Y_pos(snakeysig2),
 		.snake_size(ballsizesig),
 		
+		.endGame(endGame),
+		
 		.randCord(randCord),
 
 		// Obstacle Flag Outputs
@@ -268,7 +272,7 @@ module finalproj_top (
 		.motionFlag2Out(motionFlag2),
 		.OB1Flag(OB1Flag),
 		.OB2Flag(OB2Flag),
-		.LED(LEDR)
+		.LED(/*LEDR*/)
 		
 	);
 

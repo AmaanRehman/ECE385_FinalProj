@@ -6,7 +6,8 @@ module venom_stateMachine(input logic Clk,
 									input logic [1:0] venomCount,venomCountState,
 									input logic [1:0] motionFlag,
 									output logic [1:0] bulletDir,
-									output logic venomMovement);
+									output logic venomMovement,
+									output logic LED);
 				 
 				 
 enum logic [2:0] {Halted, 
@@ -17,15 +18,20 @@ enum logic [2:0] {Halted,
 						
 logic bulletDirLatch;
 
-always_ff @ (posedge Clk) begin
+always_ff @ (posedge Clk or posedge Reset) begin
 
 	if (Reset)
 		State <= Halted;
 	else
 		State <= Next_state;
-		
-	if (bulletDirLatch) bulletDir <= motionFlag;
 	
+end
+
+
+always_ff @ (posedge Clk) begin
+
+	if (bulletDirLatch) bulletDir <= motionFlag;
+
 end
 
 always_comb begin
@@ -34,6 +40,7 @@ always_comb begin
 	
 	bulletDirLatch = 1'b0;
 	venomMovement = 1'b0;
+	LED = 1'b0;
 	
 	unique case (State)
 	
@@ -44,6 +51,7 @@ always_comb begin
 				if ((keycode[15:8] == expectedKeycode  || keycode[7:0] == expectedKeycode) && (venomCount == venomCountState)) begin
 				
 					Next_state = bulletFired;
+					LED = 1'b1;
 					
 				end
 				

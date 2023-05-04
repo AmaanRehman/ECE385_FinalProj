@@ -6,7 +6,7 @@ module left_head_p2_example (
 );
 
 logic [9:0] rom_address;
-logic [2:0] rom_q;
+logic [3:0] rom_q;
 
 logic [3:0] palette_red, palette_green, palette_blue;
 

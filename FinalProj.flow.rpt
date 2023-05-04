@@ -1,5 +1,5 @@
 Flow report for FinalProj
-Tue May 02 19:51:07 2023
+Thu May 04 02:50:49 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,21 +40,21 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue May 02 19:51:00 2023       ;
+; Flow Status                        ; Successful - Thu May 04 02:50:42 2023       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; FinalProj                                   ;
 ; Top-level Entity Name              ; finalproj_top                               ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 6,019 / 49,760 ( 12 % )                     ;
-;     Total combinational functions  ; 5,309 / 49,760 ( 11 % )                     ;
-;     Dedicated logic registers      ; 2,901 / 49,760 ( 6 % )                      ;
-; Total registers                    ; 2970                                        ;
+; Total logic elements               ; 6,526 / 49,760 ( 13 % )                     ;
+;     Total combinational functions  ; 5,804 / 49,760 ( 12 % )                     ;
+;     Dedicated logic registers      ; 3,027 / 49,760 ( 6 % )                      ;
+; Total registers                    ; 3096                                        ;
 ; Total pins                         ; 141 / 360 ( 39 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 616,384 / 1,677,312 ( 37 % )                ;
-; Embedded Multiplier 9-bit elements ; 12 / 288 ( 4 % )                            ;
+; Total memory bits                  ; 733,312 / 1,677,312 ( 44 % )                ;
+; Embedded Multiplier 9-bit elements ; 24 / 288 ( 8 % )                            ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
 ; UFM blocks                         ; 0 / 1 ( 0 % )                               ;
 ; ADC blocks                         ; 0 / 2 ( 0 % )                               ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/02/2023 19:49:51 ;
+; Start date & time ; 05/04/2023 02:49:20 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FinalProj           ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------------------------------+---------------+-------------------+------------+
 ; Assignment Name                     ; Value                                                          ; Default Value ; Entity Name       ; Section Id ;
 +-------------------------------------+----------------------------------------------------------------+---------------+-------------------+------------+
-; COMPILER_SIGNATURE_ID               ; 136411536029934.168307499131364                                ; --            ; --                ; --         ;
+; COMPILER_SIGNATURE_ID               ; 136411536029934.168318656001284                                ; --            ; --                ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                             ; --            ; --                ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                              ; --            ; --                ; --         ;
 ; MISC_FILE                           ; finalprojsoc/synthesis/../finalprojsoc.cmp                     ; --            ; --                ; --         ;
@@ -108,11 +108,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:40     ; 1.0                     ; 5044 MB             ; 00:00:34                           ;
-; Fitter               ; 00:00:19     ; 1.7                     ; 5975 MB             ; 00:00:27                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 4715 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:06     ; 2.8                     ; 4951 MB             ; 00:00:10                           ;
-; Total                ; 00:01:08     ; --                      ; --                  ; 00:01:14                           ;
+; Analysis & Synthesis ; 00:00:48     ; 1.0                     ; 5069 MB             ; 00:00:31                           ;
+; Fitter               ; 00:00:23     ; 1.7                     ; 6015 MB             ; 00:00:29                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 4723 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:06     ; 2.8                     ; 4960 MB             ; 00:00:10                           ;
+; Total                ; 00:01:20     ; --                      ; --                  ; 00:01:13                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

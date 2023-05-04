@@ -42,10 +42,11 @@ module  venom ( input Reset, frame_clk, vga_clk,
 							  .bulletDir(bulletDir),
 							  .venomMovement(venomMovement),
 							  .venomCount(venomCount),
-							  .venomCountState(venomCountState));
+							  .venomCountState(venomCountState),
+							  .LED(LED[0]));
 
 	
-	assign LED[2] = venomMovement;
+//	assign LED[2] = venomMovement;
 //	assign LED[1:0] = bulletDir;
 
    

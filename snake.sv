@@ -195,6 +195,8 @@ module  snake ( input Reset, frame_clk,
 				begin 
 					LEDR[1] = 1; 
 				end 
+				
+				LEDR[2] <= OB1Flag;
 
 				if (!OB1Flag) begin
 					Ball_Y_Pos <= (Ball_Y_Pos + Ball_Y_Motion);  // Update ball position
