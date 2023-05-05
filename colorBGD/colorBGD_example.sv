@@ -141,7 +141,7 @@ logic snake_on, snake2_on, Wall_on;
 
 logic LD_MENU, LD_Map1;
 
-ISDU isdu1 (.Clk(Clk),
+ISDU isdu1 (.Clk(frame_clk),
 				.Reset(reset),
 				.keycode(keycode),
 				.LD_MENU(LD_MENU),
@@ -150,7 +150,11 @@ ISDU isdu1 (.Clk(Clk),
 				.player2wins(player2wins),
 				.LD_S1ENDGAME(endGameS1),
 				.LD_S2ENDGAME(endGameS2),
-				.Pause_En());
+				.Pause_En(),
+				.AnimationActive(snake2damage),
+				.offset(offset1),
+				.AnimationActive1(snake1damage),
+				.offset1(offset2));
 				
 logic player1wins, endGameS1, endGameS2;
 
@@ -378,7 +382,7 @@ venom venomS2_1(.Reset(reset),
 					 .VenomY(Venom1Y1),
 					 .VenomS(Venom1S1),
 					 .venom_on(venom1_on1),
-					 .LED(LED[7]));
+					 .LED());
 					 
 venom venomS2_2(.Reset(reset),
 					 .frame_clk(frame_clk),
@@ -646,10 +650,12 @@ begin: Snake2Health
 		
 end
 
+// *********************************LSFR*****************************//
+
 logic [9:0] x,y, x_out, y_out;
 logic LoadX, LoadY;
 
-//assign LED[9:0] = y_out;
+
 
 VGA_Random_Coords XCoord1 (.Clk(vga_clk),
 								  .reset(reset),
@@ -681,14 +687,11 @@ always_comb begin
 
 	LoadX = 1'b0;
 	LoadY = 1'b0;
-	LED[3:0] = 0;
 
 	if (x_out >= 10'd600 || y_out >= 10'd400) begin 
 		
 		LoadX = 1'b1;
 		LoadY = 1'b1;
-		
-		LED[0] = 1'b1;
 		
 	end
 	
@@ -700,8 +703,6 @@ always_comb begin
 			
 				LoadX = 1'b1;
 				LoadY = 1'b1;
-				
-				LED[1] = 1'b1;
 			
 			end
 		
@@ -709,17 +710,13 @@ always_comb begin
 			
 				LoadX = 1'b1;
 				LoadY = 1'b1;
-				
-				LED[2] = 1'b1;
-			
+
 			end 
 			
 			else if (x == x_out || y == y_out) begin
 			
 				LoadX = 1'b1;
 				LoadY = 1'b1;
-				
-				LED[3] = 1'b1;
 				
 			end
 			
@@ -732,14 +729,6 @@ always_comb begin
 			end
 		end
 	end
-	
-//	else begin
-//	
-//		LoadX = 1'b0;
-//		LoadY = 1'b0;
-//	
-//	end
-
 end
 
 logic apple_on;
@@ -791,11 +780,127 @@ begin
 end
 					
 logic [31:0] counter;
+logic [9:0] egg_x, egg_y, egg_xOut, egg_yOut;
+logic load_eggX, load_eggY;
 						 
 Second_Counter (.clk_60Hz(frame_clk),
-					 .reset(reset),
+					 .reset(reset | endGameS1 | endGameS2),
 					 .count(counter));
 					 
+VGA_Random_Coords eggXCoord1 (.Clk(frame_clk),
+										.reset(reset),
+										.seedIn(randCord[13]),
+										.rnd(egg_x));
+								  
+VGA_Random_Coords eggYCoord1 (.Clk(frame_clk),
+										.reset(reset),
+										.seedIn(randCord[17]),
+										.rnd(egg_y));
+								  
+
+reg_unit #(10) eggX(
+					.Clk(Clk),
+					.Reset(reset),							/// Might have to change this to game reset						
+					.Din(x),
+					.Load(LoadX),
+					.Data_Out(egg_xOut));
+					
+reg_unit #(10) eggY(
+					.Clk(Clk),
+					.Reset(reset),							/// Might have to change this to game reset						
+					.Din(y),
+					.Load(LoadY),
+					.Data_Out(egg_yOut));
+
+logic easterEggOn;
+
+			 
+always_ff @ (posedge Clk)
+begin
+
+	if (counter == 25) begin
+		
+		easterEggOn <= 1'b1;
+	
+	end
+	
+	else if (EggOn && (snake_on || snake2_on)) begin
+	
+		easterEggOn <= 1'b0;
+	
+	end
+	
+	else if (counter == 28) begin
+		
+		easterEggOn <= 1'b0;
+	
+	end
+	
+end
+
+logic show_me;
+
+always_ff @ (posedge Clk) begin
+
+	if (reset) show_me = 1'b0;
+	
+	if (EggOn && (snake_on || snake2_on)) begin
+	
+		show_me <= 1'b1;
+	
+	end
+
+
+end
+
+always_comb begin
+
+	load_eggX = 1'b0;
+	load_eggY = 1'b0;
+	
+	if (counter == 8) begin
+	
+		if (egg_xOut >= 10'd600 || egg_yOut >= 10'd400) begin 
+		
+			load_eggX = 1'b1;
+			load_eggY = 1'b1;
+		
+		end
+	
+		else begin
+
+			if (((DrawX == egg_xOut) && (DrawY == egg_yOut))) begin
+		
+				if (egg_xOut >= 10'd600 || egg_yOut >= 10'd400) begin 
+			
+					load_eggX = 1'b1;
+					load_eggY = 1'b1;
+			
+				end
+		
+				else if ((Wall_on || snake_on || snake2_on)) begin
+			
+					load_eggX = 1'b1;
+					load_eggY = 1'b1;
+
+				end 
+			
+				else begin
+			
+					load_eggX = 1'b0;
+					load_eggY = 1'b0;
+				
+				end
+		end
+
+	end
+end
+end
+
+//assign LED[9:0] = egg_yOut;
+
+assign LED[0] = show_me;
+assign LED[1] = EggOn;
 	
 //	else LoadX = 1'b0;
 
@@ -818,54 +923,6 @@ Second_Counter (.clk_60Hz(frame_clk),
 //	end
 //end
  
- 
- /// Logic for Random BLock GENERATION
-
-
-//logic [19:0] randCordOut [15];
-//logic [3:0] i,j;
-//
-////logic [9:0] randX = randCordOut;
-// 
-//always_ff @ (posedge vga_clk) begin
-//
-//	if ((keycode[15:8] == 8'h15) || (keycode[7:0] == 8'h15)) begin
-//	
-//			LED[8] = 1'b1;
-//		
-//		for (j = 4'd0; j < 4'd15; j++) begin
-//			
-//			randCordOut[i] <= 20'd0;
-//		
-//		end
-//	
-//	end
-//	
-//	else LED[8] = 1'b0;
-//
-//	if ((keycode[15:8] == 8'h28) || (keycode[7:0] == 8'h28)) begin
-//	
-//		LED[6] = 1'b1;
-//		
-//		for (i = 4'd0; i < 4'd15; i++) begin
-//			
-//			if (randCordOut[i] == 20'd0) begin
-//			
-////				LED[4] = 1'b0;
-//				randCordOut[i] <= randCord;
-//			end
-//			
-////			else LED[4] = 1'b1;
-//			
-//		end 	
-//		
-//		
-//	end
-//	
-//	else LED[6] = 1'b0;
-//	
-//end
-
 
 //// COLORING LOGIC
 
@@ -1334,6 +1391,60 @@ always_ff @ (posedge vga_clk) begin
 				end
 				
 			end
+
+			if (ani1on && snake2damage) begin
+
+				if ((ani_palette_red != 4'hF) ||
+					(ani_palette_green != 4'h0) || 
+					(ani_palette_blue != 4'hF)) begin
+
+						red <= ani_palette_red;
+						green <= ani_palette_green;
+						blue <= ani_palette_blue;
+
+				end
+
+			end
+			
+			if (ani2on && snake1damage) begin
+
+				if ((ani_palette_red1 != 4'hF) ||
+					(ani_palette_green1 != 4'h0) || 
+					(ani_palette_blue1 != 4'hF)) begin
+
+						red <= ani_palette_red1;
+						green <= ani_palette_green1;
+						blue <= ani_palette_blue1;
+
+				end
+			end
+			
+			if (EggOn) begin
+			
+				if ((egg_palette_red != 4'hF) ||
+					(egg_palette_green != 4'h0) || 
+					(egg_palette_blue != 4'hF)) begin
+
+						red <= egg_palette_red;
+						green <= egg_palette_green;
+						blue <= egg_palette_blue;
+
+				end
+			
+			end
+			
+			if (me_on) begin
+			
+				if ((palette_red_me != 4'hF) ||
+					(palette_green_me != 4'h0) || 
+					(palette_blue_me != 4'hF)) begin
+
+						red <= palette_red_me;
+						green <= palette_green_me;
+						blue <= palette_blue_me;
+
+				end			
+			end
 			
 		end // LDMap1 END
 		
@@ -1455,148 +1566,7 @@ end
 
  end
 
-// *********************************LSFR*****************************//
 
-//logic [8:0] seedgen;   
-//counter seedgenx(
-//	.Reset(0), 
-//	.enable(1), 
-//    .Clk(Clk), 
-//
-//    .out(seedgen[8:0])
-//);
-//
-//logic seed_en, seed_en1, seed_en2, seed_en3, seed_en4, seed_en5, seed_en6, seed_en7, seed_en8, seed_en9, seed_en10, seed_en11, seed_en12, seed_en13, seed_en14, seed_en15;
-//logic res_LFSR; 
-//LFSR LFSR(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX[8:0]), .seed(seedgen[8:0]), .seed_in(seed_en15), .seed_out(seed_en)
-//);
-//LFSR LFSR1(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX1[8:0]), .seed(testX[8:0]), .seed_in(seed_en), .seed_out(seed_en1)
-//);
-//LFSR LFSR2(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX2[8:0]), .seed(testX1[8:0]), .seed_in(seed_en1), .seed_out(seed_en2)
-//);
-//LFSR LFSR3(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX3[8:0]), .seed(testX2[8:0]), .seed_in(seed_en2), .seed_out(seed_en3)
-//);
-//LFSR LFSR4(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX4[8:0]), .seed(testX3[8:0]), .seed_in(seed_en3), .seed_out(seed_en4)
-//);
-//LFSR LFSR5(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX5[8:0]), .seed(testX4[8:0]), .seed_in(seed_en4), .seed_out(seed_en5)
-//);
-//LFSR LFSR6(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX6[8:0]), .seed(testX5[8:0]), .seed_in(seed_en5), .seed_out(seed_en6)
-//);
-//LFSR LFSR7(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX7[8:0]), .seed(testX6[8:0]), .seed_in(seed_en6), .seed_out(seed_en7)
-//);
-//LFSR LFSR8(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX8[8:0]), .seed(testX7[8:0]), .seed_in(seed_en7), .seed_out(seed_en8)
-//);
-//LFSR LFSR9(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX9[8:0]), .seed(testX8[8:0]), .seed_in(seed_en8), .seed_out(seed_en9)
-//);
-//LFSR LFSR10(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX10[8:0]), .seed(testX9[8:0]), .seed_in(seed_en9), .seed_out(seed_en10)
-//);
-//LFSR LFSR11(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX11[8:0]), .seed(testX10[8:0]), .seed_in(seed_en10), .seed_out(seed_en11)
-//);
-//LFSR LFSR12(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX12[8:0]), .seed(testX11[8:0]), .seed_in(seed_en11), .seed_out(seed_en12)
-//);
-//LFSR LFSR13(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX13[8:0]), .seed(testX12[8:0]), .seed_in(seed_en12), .seed_out(seed_en13)
-//);
-//LFSR LFSR14(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX14[8:0]), .seed(testX13[8:0]), .seed_in(seed_en13), .seed_out(seed_en14)
-//);
-//LFSR LFSR15(
-//    .Clk(Clk), .Reset(res_LFSR), .outp(testX15[8:0]), .seed(testX14[8:0]), .seed_in(seed_en14), .seed_out(seed_en15)
-//);
-//
-//
-//logic [8:0] testX, testX1, testX2, testX3, testX4, testX5, testX6, testX7,  testX8, testX9, testX10, testX11, testX12, testX13, testX14, testX15;
-//logic [8:0] readyX, readyX1, readyX2, readyX3, readyX4, readyX5, readyX6, readyX7,  readyX8, readyX9, readyX10, readyX11, readyX12, readyX13, readyX14, readyX15;
-//
-//always_ff@(posedge frame_clk)
-//begin 
-//	 
-//		if ((keycode[15:8] == 8'h28) || (keycode[7:0] == 8'h28)) begin
-//        if(testX > 9'h0 && testX <= 9'd100)
-//            readyX <= testX + 9'd100;
-//        else 
-//            readyX <= testX;
-//        if(testX1 > 9'h0 && testX1 <= 9'd100)
-//            readyX1 <= testX1 + 9'd100;
-//        else 
-//            readyX1 <= testX1;        
-//        if(testX2 > 9'h0 && testX2 <= 9'd100)
-//            readyX2 <= testX2 + 9'd100;
-//        else 
-//            readyX2 <= testX2;  
-//        if(testX3 > 9'h0 && testX3 <= 9'd100)
-//            readyX3 <= testX3 + 9'd100;
-//        else 
-//            readyX3 <= testX3;
-//        if(testX4 > 9'h0 && testX4 <= 9'd100)
-//            readyX4 <= testX4 + 9'd100;
-//        else 
-//            readyX4 <= testX4;
-//        if(testX5 > 9'h0 && testX5 <= 9'd100)
-//            readyX5 <= testX5 + 9'd100;
-//        else 
-//            readyX5 <= testX5;
-//        if(testX6 > 9'h0 && testX6 <= 9'd100)
-//            readyX6 <= testX6 + 9'd100;
-//        else 
-//            readyX6 <= testX6;
-//        if(testX7 > 9'h0 && testX7 <= 9'd100)
-//            readyX7 <= testX7 + 9'd100;
-//        else 
-//            readyX7 <= testX7;
-//        if(testX8 > 9'h0 && testX8 <= 9'd100)
-//            readyX8 <= testX8 + 9'd100;  
-//        else 
-//            readyX8 <= testX8;
-//        if(testX9 > 9'h0 && testX9 <= 9'd100)
-//            readyX9 <= testX9 + 9'd100;
-//        else 
-//            readyX9 <= testX9;
-//        if(testX10 > 9'h0 && testX10 <= 9'd100)
-//            readyX10 <= testX10 + 9'd100;
-//        else 
-//            readyX10 <= testX10;
-//        if(testX11 > 9'h0 && testX11 <= 9'd100)
-//            readyX11 <= testX11 + 9'd100;
-//        else 
-//            readyX11 <= testX11;
-//        if(testX12 > 9'h0 && testX12 <= 9'd100)
-//            readyX12 <= testX12 + 9'd100;
-//        else 
-//            readyX12 <= testX12;
-//        if(testX13 > 9'h0 && testX13 <= 9'd100)
-//            readyX13 <= testX13 + 9'd100;
-//        else 
-//            readyX13 <= testX13;
-//        if(testX14 > 9'h0 && testX14 <= 9'd100)
-//            readyX14 <= testX14 + 9'd100;  
-//        else 
-//            readyX14 <= testX14;
-//        if(testX15 > 9'h0 && testX15 <= 9'd100)
-//            readyX15 <= testX15 + 9'd100;
-//        else 
-//            readyX15 <= testX15;
-//    end
-//	 
-//end
-//
-//// Random Coordinate generation for obstacles
-//
-//logic [9:0] randX, randY;
-//logic enable, clkout;
 
 // Movement state maching
 
@@ -2142,6 +2112,114 @@ always_comb begin
 	actual_data2 = sprite_data2[7-VS2TextDistX[2:0]];
 
 end
-				
+
+// Animation Data
+
+logic [2:0] offset1, offset2;
+logic snake2damage, ani1on;
+								
+logic [12:0] ani_rom_address;
+logic [3:0] ani_rom_q;
+
+logic [12:0] ani_rom_address1;
+logic [3:0] ani_rom_q1;
+
+assign ani_rom_address = (900 * offset1) + (DistX1 + (DistY1*30));
+assign ani_rom_address1 = (900 * offset2) + (DistX + (DistY*30));
+
+logic [3:0] ani_palette_red, ani_palette_green, ani_palette_blue;
+logic [3:0] ani_palette_red1, ani_palette_green1, ani_palette_blue1;
+								
+
+VenomAnimationSprite_rom VenomAnimationSprite_rom (
+	.clock   (negedge_vga_clk),
+	.address (ani_rom_address),
+	.q       (ani_rom_q)
+);
+
+VenomAnimationSprite_palette VenomAnimationSprite_palette (
+	.index (ani_rom_q),
+	.red   (ani_palette_red),
+	.green (ani_palette_green),
+	.blue  (ani_palette_blue)
+);
+
+assign ani1on = (DistX1 < 30 && DistY1 < 30);
+assign ani2on = (DistX < 30 && DistY < 30);
+
+VenomAnimationSprite_rom VenomAnimationSprite_rom1 (
+	.clock   (negedge_vga_clk),
+	.address (ani_rom_address1),
+	.q       (ani_rom_q1)
+);
+
+VenomAnimationSprite_palette VenomAnimationSprite_palette1 (
+	.index (ani_rom_q1),
+	.red   (ani_palette_red1),
+	.green (ani_palette_green1),
+	.blue  (ani_palette_blue1)
+);
+
+// Easter Egg Data
+
+logic [6:0] rom_address_egg;
+logic [3:0] rom_q_egg;
+
+logic [9:0] EggDistX, EggDistY;
+
+assign EggDistX = DrawX - 325;
+assign EggDistY = DrawY - 405;
+
+//assign EggDistX = DrawX - egg_xOut;
+//assign EggDistY = DrawY - egg_yOut;
+
+logic EggOn;
+
+assign EggOn = EggDistX < 10 && EggDistY < 10 && easterEggOn;
+assign rom_address_egg = EggDistX + EggDistY*10;
+
+logic [3:0] egg_palette_red, egg_palette_green, egg_palette_blue;
+
+EasterEgg_rom EasterEgg_rom (
+	.clock   (negedge_vga_clk),
+	.address (rom_address_egg),
+	.q       (rom_q_egg)
+);
+
+EasterEgg_palette EasterEgg_palette (
+	.index (rom_q_egg),
+	.red   (egg_palette_red),
+	.green (egg_palette_green),
+	.blue  (egg_palette_blue)
+);
+
+// Me Sprite
+
+logic [9:0] rom_address_me;
+logic [3:0] rom_q_me;
+
+logic [9:0] MeDistX, MeDistY;
+
+assign MeDistX = DrawX - 318;
+assign MeDistY = DrawY - 425;
+
+assign me_on = MeDistX < 24 && MeDistY < 32 && show_me;
+
+assign rom_address_me = MeDistX + MeDistY*24;
+
+logic [3:0] palette_red_me, palette_green_me, palette_blue_me;
+
+Me_Sprite_rom Me_Sprite_rom (
+	.clock   (negedge_vga_clk),
+	.address (rom_address_me),
+	.q       (rom_q_me)
+);
+
+Me_Sprite_palette Me_Sprite_palette (
+	.index (rom_q_me),
+	.red   (palette_red_me),
+	.green (palette_green_me),
+	.blue  (palette_blue_me)
+);
 
 endmodule

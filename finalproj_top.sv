@@ -210,7 +210,7 @@ module finalproj_top (
 		
 		.motionFlag(motionFlag1),
 		.OB1Flag(OB1Flag)	,
-		.LEDR(LEDR)
+		.LEDR()
 	);
 	
 	snake2 s_enemy (
@@ -272,7 +272,7 @@ module finalproj_top (
 		.motionFlag2Out(motionFlag2),
 		.OB1Flag(OB1Flag),
 		.OB2Flag(OB2Flag),
-		.LED(/*LEDR*/)
+		.LED(LEDR)
 		
 	);
 
