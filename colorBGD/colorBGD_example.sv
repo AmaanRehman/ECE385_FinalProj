@@ -897,32 +897,11 @@ always_comb begin
 end
 end
 
-//assign LED[9:0] = egg_yOut;
+
 
 assign LED[0] = show_me;
 assign LED[1] = EggOn;
 	
-//	else LoadX = 1'b0;
-
-
-//always_comb
-//begin
-//
-//	if (snake_on == 1'b1 && Wall_on == 1'b1) begin
-//
-//		OB1Flag = 1'b1;
-//		LED[2] = 1'b1;
-//	
-//	end
-//
-//	else begin
-//	
-//		OB1Flag = 1'b0;
-//		LED[2] = 1'b0;
-//		
-//	end
-//end
- 
 
 //// COLORING LOGIC
 
@@ -931,8 +910,6 @@ always_ff @ (posedge vga_clk) begin
 	red <= 4'h0;
 	green <= 4'h0;
 	blue <= 4'h0;
-
-//   if (DrawX == 0 && DrawY == 0) OB1Flag <= 1'b0;
 
 	if (blank) begin
 
@@ -1002,204 +979,6 @@ always_ff @ (posedge vga_clk) begin
 		end
 		
 		
-			/// Random Block Generation
-
-			//************** C - Code Method*************************//
-
-//			if (((DrawX >= randCordOut[0][19:10] - 20) &&
-//				(DrawX <= randCordOut[0][19:10] + 20)  &&
-//				(DrawY >= randCordOut[0][9:0] - 12)  &&
-//				(DrawY <= randCordOut[0][9:0] + 12))) begin
-//				
-//				if(randCordOut[0] != 20'b0) begin
-//				
-//				
-//					red <= 4'h0;
-//					green <= 4'h0;
-//					blue <= 4'h0;
-//					
-//					LED[4] = 1'b1;
-//					
-//				end
-//				
-//				else LED[4] = 1'b0;
-//		
-//			end
-			
-			// ****************LSFR Method**************************//
-			// if (((DrawX >= readyX4 - 20) &&
-			// 	(DrawX <= readyX4 + 20)  &&
-			// 	(DrawY >= readyX15 - 12)  &&
-			// 	(DrawY <= readyX15 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-			// 	if (((DrawX >= readyX8 - 20) &&
-			// 	(DrawX <= readyX8 + 20)  &&
-			// 	(DrawY >= readyX9 - 12)  &&
-			// 	(DrawY <= readyX9 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-				
-			// 	if (((DrawX >= readyX11 - 20) &&
-			// 	(DrawX <= readyX11 + 20)  &&
-			// 	(DrawY >= readyX2 - 12)  &&
-			// 	(DrawY <= readyX2 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-				
-			// 	if (((DrawX >= readyX4 - 20) &&
-			// 	(DrawX <= readyX4 + 20)  &&
-			// 	(DrawY >= readyX1 - 12)  &&
-			// 	(DrawY <= readyX1 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-				
-			// 	if (((DrawX >= readyX3 - 20) &&
-			// 	(DrawX <= readyX3 + 20)  &&
-			// 	(DrawY >= readyX2 - 12)  &&
-			// 	(DrawY <= readyX2 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-				
-			// 	if (((DrawX >= readyX10 - 20) &&
-			// 	(DrawX <= readyX10 + 20)  &&
-			// 	(DrawY >= readyX8 - 12)  &&
-			// 	(DrawY <= readyX8 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-			// 	if (((DrawX >= readyX12 - 20) &&
-			// 	(DrawX <= readyX12 + 20)  &&
-			// 	(DrawY >= readyX15 - 12)  &&
-			// 	(DrawY <= readyX15 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-				
-			// 	if (((DrawX >= readyX2 - 20) &&
-			// 	(DrawX <= readyX2 + 20)  &&
-			// 	(DrawY >= readyX8 - 12)  &&
-			// 	(DrawY <= readyX8 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-				
-			// 	if (((DrawX >= readyX7 - 20) &&
-			// 	(DrawX <= readyX7 + 20)  &&
-			// 	(DrawY >= readyX1 - 12)  &&
-			// 	(DrawY <= readyX1 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-			// 	if (((DrawX >= readyX8 - 20) &&
-			// 	(DrawX <= readyX8 + 20)  &&
-			// 	(DrawY >= readyX3 - 12)  &&
-			// 	(DrawY <= readyX3 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-			// 	if (((DrawX >= readyX4 - 20) &&
-			// 	(DrawX <= readyX5 + 20)  &&
-			// 	(DrawY >= readyX5 - 12)  &&
-			// 	(DrawY <= readyX5 + 12))) begin
-							
-			// 		red <= 4'h0;
-			// 		green <= 4'h0;
-			// 		blue <= 4'h0;
-					
-			// 		LED[4] = 1'b1;
-					
-			// 	end
-				
-			// 	else LED[4] = 1'b0;
-				
-			////////////////////////////
-
 			if ((paletteOb1_red != 4'hF) &&
 					(paletteOb1_green != 4'h0) && 
 					(paletteOb1_blue != 4'hF)) begin
@@ -1209,12 +988,6 @@ always_ff @ (posedge vga_clk) begin
 						blue <= paletteOb1_blue;
 
 					end
-
-//			else begin
-//				
-//				LED[7] = 1'b0;
-//				
-//			end
 			
 			// Venom Drawing Under Snake
 			
