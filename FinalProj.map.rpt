@@ -1,5 +1,5 @@
 Analysis & Synthesis report for FinalProj
-Fri May 05 04:56:43 2023
+Fri May 05 06:02:24 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -537,7 +537,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri May 05 04:56:43 2023       ;
+; Analysis & Synthesis Status        ; Successful - Fri May 05 06:02:24 2023       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; FinalProj                                   ;
 ; Top-level Entity Name              ; finalproj_top                               ;
@@ -659,9 +659,9 @@ refer to the applicable agreement for further details.
 ;     Processor 3            ;   0.1%      ;
 ;     Processor 4            ;   0.1%      ;
 ;     Processor 5            ;   0.1%      ;
-;     Processor 6            ;   0.1%      ;
-;     Processor 7            ;   0.1%      ;
-;     Processor 8            ;   0.1%      ;
+;     Processor 6            ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -14470,7 +14470,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:26     ;
+; Top            ; 00:00:30     ;
 +----------------+--------------+
 
 
@@ -14480,7 +14480,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri May 05 04:55:35 2023
+    Info: Processing started: Fri May 05 06:01:08 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off FinalProj -c FinalProj
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
@@ -14800,12 +14800,12 @@ Info (12021): Found 1 design units, including 1 entities, in source file animati
     Info (12023): Found entity 1: animation_stateMachine File: C:/Users/amaan/Documents/ECE385_FinalProj/animation_stateMachine.sv Line: 1
 Warning (10236): Verilog HDL Implicit Net warning at colorBGD_example.sv(150): created implicit net for "player2wins" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 150
 Warning (10236): Verilog HDL Implicit Net warning at colorBGD_example.sv(156): created implicit net for "snake1damage" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 156
-Warning (10236): Verilog HDL Implicit Net warning at colorBGD_example.sv(2148): created implicit net for "ani2on" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2148
-Warning (10236): Verilog HDL Implicit Net warning at colorBGD_example.sv(2206): created implicit net for "me_on" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2206
+Warning (10236): Verilog HDL Implicit Net warning at colorBGD_example.sv(1921): created implicit net for "ani2on" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1921
+Warning (10236): Verilog HDL Implicit Net warning at colorBGD_example.sv(1979): created implicit net for "me_on" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1979
 Critical Warning (10846): Verilog HDL Instantiation warning at venom.sv(46): instance has no name File: C:/Users/amaan/Documents/ECE385_FinalProj/venom.sv Line: 46
 Critical Warning (10846): Verilog HDL Instantiation warning at colorBGD_example.sv(788): instance has no name File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 788
-Critical Warning (10846): Verilog HDL Instantiation warning at colorBGD_example.sv(2046): instance has no name File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2046
-Critical Warning (10846): Verilog HDL Instantiation warning at colorBGD_example.sv(2047): instance has no name File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2047
+Critical Warning (10846): Verilog HDL Instantiation warning at colorBGD_example.sv(1819): instance has no name File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1819
+Critical Warning (10846): Verilog HDL Instantiation warning at colorBGD_example.sv(1820): instance has no name File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1820
 Warning (10037): Verilog HDL or VHDL warning at finalprojsoc_sdram.v(318): conditional expression evaluates to a constant File: C:/Users/amaan/Documents/ECE385_FinalProj/finalprojsoc/synthesis/submodules/finalprojsoc_sdram.v Line: 318
 Warning (10037): Verilog HDL or VHDL warning at finalprojsoc_sdram.v(328): conditional expression evaluates to a constant File: C:/Users/amaan/Documents/ECE385_FinalProj/finalprojsoc/synthesis/submodules/finalprojsoc_sdram.v Line: 328
 Warning (10037): Verilog HDL or VHDL warning at finalprojsoc_sdram.v(338): conditional expression evaluates to a constant File: C:/Users/amaan/Documents/ECE385_FinalProj/finalprojsoc/synthesis/submodules/finalprojsoc_sdram.v Line: 338
@@ -15069,32 +15069,32 @@ Warning (10036): Verilog HDL or VHDL warning at colorBGD_example.sv(784): object
 Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(57): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 57
 Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(456): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 456
 Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(481): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 481
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1684): truncated value with size 32 to match size of target (15) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1684
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1828): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1828
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1850): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1850
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1851): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1851
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1852): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1852
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1902): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1902
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1903): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1903
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1904): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1904
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1956): truncated value with size 32 to match size of target (6) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1956
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1979): truncated value with size 32 to match size of target (8) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1979
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2006): truncated value with size 32 to match size of target (15) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2006
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2007): truncated value with size 32 to match size of target (15) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2007
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2064): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2064
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2067): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2067
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2070): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2070
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2073): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2073
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2108): truncated value with size 32 to match size of target (11) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2108
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2109): truncated value with size 32 to match size of target (11) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2109
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2127): truncated value with size 32 to match size of target (13) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2127
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2128): truncated value with size 32 to match size of target (13) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2128
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2170): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2170
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2171): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2171
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2179): truncated value with size 32 to match size of target (7) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2179
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2203): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2203
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2204): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2204
-Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(2208): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2208
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1457): truncated value with size 32 to match size of target (15) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1457
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1601): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1601
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1623): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1623
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1624): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1624
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1625): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1625
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1675): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1675
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1676): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1676
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1677): truncated value with size 32 to match size of target (19) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1677
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1729): truncated value with size 32 to match size of target (6) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1729
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1752): truncated value with size 32 to match size of target (8) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1752
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1779): truncated value with size 32 to match size of target (15) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1779
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1780): truncated value with size 32 to match size of target (15) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1780
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1837): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1837
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1840): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1840
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1843): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1843
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1846): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1846
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1881): truncated value with size 32 to match size of target (11) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1881
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1882): truncated value with size 32 to match size of target (11) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1882
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1900): truncated value with size 32 to match size of target (13) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1900
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1901): truncated value with size 32 to match size of target (13) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1901
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1943): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1943
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1944): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1944
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1952): truncated value with size 32 to match size of target (7) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1952
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1976): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1976
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1977): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1977
+Warning (10230): Verilog HDL assignment warning at colorBGD_example.sv(1981): truncated value with size 32 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1981
 Warning (10034): Output port "LED[9..2]" at colorBGD_example.sv(30) has no driver File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 30
 Info (12128): Elaborating entity "ISDU" for hierarchy "colorBGD_example:comb_50|ISDU:isdu1" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 157
 Info (10264): Verilog HDL Case Statement information at ISDU.sv(214): all case item expressions in this case statement are onehot File: C:/Users/amaan/Documents/ECE385_FinalProj/ISDU.sv Line: 214
@@ -15111,85 +15111,85 @@ Info (12128): Elaborating entity "reg_unit" for hierarchy "colorBGD_example:comb
 Warning (10230): Verilog HDL assignment warning at regUnit.sv(9): truncated value with size 16 to match size of target (10) File: C:/Users/amaan/Documents/ECE385_FinalProj/regUnit.sv Line: 9
 Info (12128): Elaborating entity "Second_Counter" for hierarchy "colorBGD_example:comb_50|Second_Counter:comb_1171" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 788
 Warning (10230): Verilog HDL assignment warning at Second_Counter.sv(21): truncated value with size 32 to match size of target (26) File: C:/Users/amaan/Documents/ECE385_FinalProj/Second_Counter.sv Line: 21
-Info (12128): Elaborating entity "move_stateMachineS1" for hierarchy "colorBGD_example:comb_50|move_stateMachineS1:s1" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1582
-Info (12128): Elaborating entity "move_stateMachineS2" for hierarchy "colorBGD_example:comb_50|move_stateMachineS2:s2" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1590
-Info (12128): Elaborating entity "reg_unit" for hierarchy "colorBGD_example:comb_50|reg_unit:snake1Motion" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1599
+Info (12128): Elaborating entity "move_stateMachineS1" for hierarchy "colorBGD_example:comb_50|move_stateMachineS1:s1" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1355
+Info (12128): Elaborating entity "move_stateMachineS2" for hierarchy "colorBGD_example:comb_50|move_stateMachineS2:s2" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1363
+Info (12128): Elaborating entity "reg_unit" for hierarchy "colorBGD_example:comb_50|reg_unit:snake1Motion" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1372
 Warning (10230): Verilog HDL assignment warning at regUnit.sv(9): truncated value with size 16 to match size of target (2) File: C:/Users/amaan/Documents/ECE385_FinalProj/regUnit.sv Line: 9
-Info (12128): Elaborating entity "mux_4_1_16" for hierarchy "colorBGD_example:comb_50|mux_4_1_16:redPaletteMux" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1637
-Info (12128): Elaborating entity "mainMenu_rom" for hierarchy "colorBGD_example:comb_50|mainMenu_rom:mainMenu_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1690
+Info (12128): Elaborating entity "mux_4_1_16" for hierarchy "colorBGD_example:comb_50|mux_4_1_16:redPaletteMux" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1410
+Info (12128): Elaborating entity "mainMenu_rom" for hierarchy "colorBGD_example:comb_50|mainMenu_rom:mainMenu_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1463
 Warning (10858): Verilog HDL warning at mainMenu_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/mainMenu/mainMenu_rom.sv Line: 7
-Info (12128): Elaborating entity "mainMenu_palette" for hierarchy "colorBGD_example:comb_50|mainMenu_palette:mainMenu_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1697
-Info (12128): Elaborating entity "colorBGD_rom" for hierarchy "colorBGD_example:comb_50|colorBGD_rom:colorBGD_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1705
+Info (12128): Elaborating entity "mainMenu_palette" for hierarchy "colorBGD_example:comb_50|mainMenu_palette:mainMenu_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1470
+Info (12128): Elaborating entity "colorBGD_rom" for hierarchy "colorBGD_example:comb_50|colorBGD_rom:colorBGD_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1478
 Warning (10858): Verilog HDL warning at colorBGD_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_rom.sv Line: 7
-Info (12128): Elaborating entity "colorBGD_palette" for hierarchy "colorBGD_example:comb_50|colorBGD_palette:colorBGD_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1712
-Info (12128): Elaborating entity "up_head_p1_rom" for hierarchy "colorBGD_example:comb_50|up_head_p1_rom:SnakeHead_W_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1721
+Info (12128): Elaborating entity "colorBGD_palette" for hierarchy "colorBGD_example:comb_50|colorBGD_palette:colorBGD_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1485
+Info (12128): Elaborating entity "up_head_p1_rom" for hierarchy "colorBGD_example:comb_50|up_head_p1_rom:SnakeHead_W_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1494
 Warning (10858): Verilog HDL warning at up_head_p1_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/up_head_p1/up_head_p1_rom.sv Line: 7
-Info (12128): Elaborating entity "up_head_p1_palette" for hierarchy "colorBGD_example:comb_50|up_head_p1_palette:SnakeHead_W_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1728
-Info (12128): Elaborating entity "down_head_p1_rom" for hierarchy "colorBGD_example:comb_50|down_head_p1_rom:SnakeHead_S_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1734
+Info (12128): Elaborating entity "up_head_p1_palette" for hierarchy "colorBGD_example:comb_50|up_head_p1_palette:SnakeHead_W_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1501
+Info (12128): Elaborating entity "down_head_p1_rom" for hierarchy "colorBGD_example:comb_50|down_head_p1_rom:SnakeHead_S_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1507
 Warning (10858): Verilog HDL warning at down_head_p1_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/down_head_p1/down_head_p1_rom.sv Line: 7
-Info (12128): Elaborating entity "down_head_p1_palette" for hierarchy "colorBGD_example:comb_50|down_head_p1_palette:SnakeHead_S_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1741
-Info (12128): Elaborating entity "left_head_p1_rom" for hierarchy "colorBGD_example:comb_50|left_head_p1_rom:SnakeHead_A_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1747
+Info (12128): Elaborating entity "down_head_p1_palette" for hierarchy "colorBGD_example:comb_50|down_head_p1_palette:SnakeHead_S_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1514
+Info (12128): Elaborating entity "left_head_p1_rom" for hierarchy "colorBGD_example:comb_50|left_head_p1_rom:SnakeHead_A_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1520
 Warning (10858): Verilog HDL warning at left_head_p1_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/left_head_p1/left_head_p1_rom.sv Line: 7
-Info (12128): Elaborating entity "left_head_p1_palette" for hierarchy "colorBGD_example:comb_50|left_head_p1_palette:SnakeHead_A_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1754
-Info (12128): Elaborating entity "right_head_p1_rom" for hierarchy "colorBGD_example:comb_50|right_head_p1_rom:SnakeHead_D_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1760
+Info (12128): Elaborating entity "left_head_p1_palette" for hierarchy "colorBGD_example:comb_50|left_head_p1_palette:SnakeHead_A_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1527
+Info (12128): Elaborating entity "right_head_p1_rom" for hierarchy "colorBGD_example:comb_50|right_head_p1_rom:SnakeHead_D_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1533
 Warning (10858): Verilog HDL warning at right_head_p1_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/right_head_p1/right_head_p1_rom.sv Line: 7
-Info (12128): Elaborating entity "right_head_p1_palette" for hierarchy "colorBGD_example:comb_50|right_head_p1_palette:SnakeHead_D_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1767
-Info (12128): Elaborating entity "up_head_p2_rom" for hierarchy "colorBGD_example:comb_50|up_head_p2_rom:up_head_p2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1776
+Info (12128): Elaborating entity "right_head_p1_palette" for hierarchy "colorBGD_example:comb_50|right_head_p1_palette:SnakeHead_D_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1540
+Info (12128): Elaborating entity "up_head_p2_rom" for hierarchy "colorBGD_example:comb_50|up_head_p2_rom:up_head_p2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1549
 Warning (10858): Verilog HDL warning at up_head_p2_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/up_head_p2/up_head_p2_rom.sv Line: 7
-Info (12128): Elaborating entity "up_head_p2_palette" for hierarchy "colorBGD_example:comb_50|up_head_p2_palette:up_head_p2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1783
-Info (12128): Elaborating entity "down_head_p2_rom" for hierarchy "colorBGD_example:comb_50|down_head_p2_rom:down_head_p2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1789
+Info (12128): Elaborating entity "up_head_p2_palette" for hierarchy "colorBGD_example:comb_50|up_head_p2_palette:up_head_p2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1556
+Info (12128): Elaborating entity "down_head_p2_rom" for hierarchy "colorBGD_example:comb_50|down_head_p2_rom:down_head_p2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1562
 Warning (10858): Verilog HDL warning at down_head_p2_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/down_head_p2/down_head_p2_rom.sv Line: 7
-Info (12128): Elaborating entity "down_head_p2_palette" for hierarchy "colorBGD_example:comb_50|down_head_p2_palette:down_head_p2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1796
-Info (12128): Elaborating entity "left_head_p2_rom" for hierarchy "colorBGD_example:comb_50|left_head_p2_rom:left_head_p2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1802
+Info (12128): Elaborating entity "down_head_p2_palette" for hierarchy "colorBGD_example:comb_50|down_head_p2_palette:down_head_p2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1569
+Info (12128): Elaborating entity "left_head_p2_rom" for hierarchy "colorBGD_example:comb_50|left_head_p2_rom:left_head_p2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1575
 Warning (10858): Verilog HDL warning at left_head_p2_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/left_head_p2/left_head_p2_rom.sv Line: 7
-Info (12128): Elaborating entity "left_head_p2_palette" for hierarchy "colorBGD_example:comb_50|left_head_p2_palette:left_head_p2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1809
-Info (12128): Elaborating entity "right_head_p2_rom" for hierarchy "colorBGD_example:comb_50|right_head_p2_rom:right_head_p2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1815
+Info (12128): Elaborating entity "left_head_p2_palette" for hierarchy "colorBGD_example:comb_50|left_head_p2_palette:left_head_p2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1582
+Info (12128): Elaborating entity "right_head_p2_rom" for hierarchy "colorBGD_example:comb_50|right_head_p2_rom:right_head_p2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1588
 Warning (10858): Verilog HDL warning at right_head_p2_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/right_head_p2/right_head_p2_rom.sv Line: 7
-Info (12128): Elaborating entity "right_head_p2_palette" for hierarchy "colorBGD_example:comb_50|right_head_p2_palette:right_head_p2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1822
-Info (12128): Elaborating entity "Obstacle_Set1_rom" for hierarchy "colorBGD_example:comb_50|Obstacle_Set1_rom:Obstacle_Set1_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1836
+Info (12128): Elaborating entity "right_head_p2_palette" for hierarchy "colorBGD_example:comb_50|right_head_p2_palette:right_head_p2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1595
+Info (12128): Elaborating entity "Obstacle_Set1_rom" for hierarchy "colorBGD_example:comb_50|Obstacle_Set1_rom:Obstacle_Set1_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1609
 Warning (10858): Verilog HDL warning at Obstacle_Set1_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/Obstacle_Set1/Obstacle_Set1_rom.sv Line: 7
-Info (12128): Elaborating entity "Obstacle_Set1_palette" for hierarchy "colorBGD_example:comb_50|Obstacle_Set1_palette:Obstacle_Set1_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1843
-Info (12128): Elaborating entity "heart_rom" for hierarchy "colorBGD_example:comb_50|heart_rom:heart_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1864
+Info (12128): Elaborating entity "Obstacle_Set1_palette" for hierarchy "colorBGD_example:comb_50|Obstacle_Set1_palette:Obstacle_Set1_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1616
+Info (12128): Elaborating entity "heart_rom" for hierarchy "colorBGD_example:comb_50|heart_rom:heart_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1637
 Warning (10858): Verilog HDL warning at heart_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/heart/heart_rom.sv Line: 7
-Info (12128): Elaborating entity "heart_palette" for hierarchy "colorBGD_example:comb_50|heart_palette:heart_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1871
-Info (12128): Elaborating entity "Venom_rom" for hierarchy "colorBGD_example:comb_50|Venom_rom:Venom_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1964
+Info (12128): Elaborating entity "heart_palette" for hierarchy "colorBGD_example:comb_50|heart_palette:heart_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1644
+Info (12128): Elaborating entity "Venom_rom" for hierarchy "colorBGD_example:comb_50|Venom_rom:Venom_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1737
 Warning (10858): Verilog HDL warning at Venom_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/Venom/Venom_rom.sv Line: 7
-Info (12128): Elaborating entity "Venom_palette" for hierarchy "colorBGD_example:comb_50|Venom_palette:Venom_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1971
-Info (12128): Elaborating entity "apple_rom" for hierarchy "colorBGD_example:comb_50|apple_rom:apple_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1987
+Info (12128): Elaborating entity "Venom_palette" for hierarchy "colorBGD_example:comb_50|Venom_palette:Venom_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1744
+Info (12128): Elaborating entity "apple_rom" for hierarchy "colorBGD_example:comb_50|apple_rom:apple_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1760
 Warning (10858): Verilog HDL warning at apple_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/apple/apple_rom.sv Line: 7
-Info (12128): Elaborating entity "apple_palette" for hierarchy "colorBGD_example:comb_50|apple_palette:apple_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1994
-Info (12128): Elaborating entity "WinnerP1_rom" for hierarchy "colorBGD_example:comb_50|WinnerP1_rom:WinnerP1_roms" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2013
+Info (12128): Elaborating entity "apple_palette" for hierarchy "colorBGD_example:comb_50|apple_palette:apple_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1767
+Info (12128): Elaborating entity "WinnerP1_rom" for hierarchy "colorBGD_example:comb_50|WinnerP1_rom:WinnerP1_roms" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1786
 Warning (10858): Verilog HDL warning at WinnerP1_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/WinnerP1/WinnerP1_rom.sv Line: 7
-Info (12128): Elaborating entity "WinnerP1_palette" for hierarchy "colorBGD_example:comb_50|WinnerP1_palette:WinnerP1_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2020
-Info (12128): Elaborating entity "WinnerP2_rom" for hierarchy "colorBGD_example:comb_50|WinnerP2_rom:WinnerP2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2027
+Info (12128): Elaborating entity "WinnerP1_palette" for hierarchy "colorBGD_example:comb_50|WinnerP1_palette:WinnerP1_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1793
+Info (12128): Elaborating entity "WinnerP2_rom" for hierarchy "colorBGD_example:comb_50|WinnerP2_rom:WinnerP2_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1800
 Warning (10858): Verilog HDL warning at WinnerP2_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/WinnerP2/WinnerP2_rom.sv Line: 7
-Info (12128): Elaborating entity "WinnerP2_palette" for hierarchy "colorBGD_example:comb_50|WinnerP2_palette:WinnerP2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2034
-Info (12128): Elaborating entity "font_rom" for hierarchy "colorBGD_example:comb_50|font_rom:comb_2611" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2046
-Info (12128): Elaborating entity "VenomAnimationSprite_rom" for hierarchy "colorBGD_example:comb_50|VenomAnimationSprite_rom:VenomAnimationSprite_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2138
+Info (12128): Elaborating entity "WinnerP2_palette" for hierarchy "colorBGD_example:comb_50|WinnerP2_palette:WinnerP2_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1807
+Info (12128): Elaborating entity "font_rom" for hierarchy "colorBGD_example:comb_50|font_rom:comb_2611" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1819
+Info (12128): Elaborating entity "VenomAnimationSprite_rom" for hierarchy "colorBGD_example:comb_50|VenomAnimationSprite_rom:VenomAnimationSprite_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1911
 Warning (10858): Verilog HDL warning at VenomAnimationSprite_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/VenomAnimationSprite/VenomAnimationSprite_rom.sv Line: 7
-Info (12128): Elaborating entity "VenomAnimationSprite_palette" for hierarchy "colorBGD_example:comb_50|VenomAnimationSprite_palette:VenomAnimationSprite_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2145
-Info (12128): Elaborating entity "EasterEgg_rom" for hierarchy "colorBGD_example:comb_50|EasterEgg_rom:EasterEgg_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2187
+Info (12128): Elaborating entity "VenomAnimationSprite_palette" for hierarchy "colorBGD_example:comb_50|VenomAnimationSprite_palette:VenomAnimationSprite_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1918
+Info (12128): Elaborating entity "EasterEgg_rom" for hierarchy "colorBGD_example:comb_50|EasterEgg_rom:EasterEgg_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1960
 Warning (10858): Verilog HDL warning at EasterEgg_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/EasterEgg/EasterEgg_rom.sv Line: 7
-Info (12128): Elaborating entity "EasterEgg_palette" for hierarchy "colorBGD_example:comb_50|EasterEgg_palette:EasterEgg_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2194
-Info (12128): Elaborating entity "Me_Sprite_rom" for hierarchy "colorBGD_example:comb_50|Me_Sprite_rom:Me_Sprite_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2216
+Info (12128): Elaborating entity "EasterEgg_palette" for hierarchy "colorBGD_example:comb_50|EasterEgg_palette:EasterEgg_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1967
+Info (12128): Elaborating entity "Me_Sprite_rom" for hierarchy "colorBGD_example:comb_50|Me_Sprite_rom:Me_Sprite_rom" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1989
 Warning (10858): Verilog HDL warning at Me_Sprite_rom.sv(7): object memory used but never assigned File: C:/Users/amaan/Documents/ECE385_FinalProj/Me_Sprite/Me_Sprite_rom.sv Line: 7
-Info (12128): Elaborating entity "Me_Sprite_palette" for hierarchy "colorBGD_example:comb_50|Me_Sprite_palette:Me_Sprite_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2223
+Info (12128): Elaborating entity "Me_Sprite_palette" for hierarchy "colorBGD_example:comb_50|Me_Sprite_palette:Me_Sprite_palette" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1996
 Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "colorBGD_example:comb_50|rom_OB1[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1829
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1855
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1855
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart1[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1855
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart1[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1855
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart2[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1855
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart2[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1855
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart3[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1906
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart3[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1906
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart4[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1906
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart4[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1906
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart5[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1906
-    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart5[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1906
+    Warning (12110): Net "colorBGD_example:comb_50|rom_OB1[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1602
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1628
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1628
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart1[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1628
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart1[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1628
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart2[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1628
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart2[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1628
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart3[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1679
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart3[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1679
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart4[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1679
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart4[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1679
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart5[3]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1679
+    Warning (12110): Net "colorBGD_example:comb_50|rom_Heart5[2]" is missing source, defaulting to GND File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1679
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2023.05.05.04:56:01 Progress: Loading slde5d24351/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2023.05.05.06:01:36 Progress: Loading slde5d24351/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -15462,8 +15462,8 @@ Info (19000): Inferred 22 megafunctions from design logic
         Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
         Info (286033): Parameter INIT_FILE set to ./mainMenu/mainMenu.mif
 Info (278001): Inferred 14 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "colorBGD_example:comb_50|Mult18" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2127
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "colorBGD_example:comb_50|Mult19" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2128
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "colorBGD_example:comb_50|Mult18" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1900
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "colorBGD_example:comb_50|Mult19" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1901
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "colorBGD_example:comb_50|Mult3" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "colorBGD_example:comb_50|Mult4" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "colorBGD_example:comb_50|Mult6" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 231
@@ -15712,8 +15712,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alts
     Info (12023): Found entity 1: altsyncram_c151 File: C:/Users/amaan/Documents/ECE385_FinalProj/db/altsyncram_c151.tdf Line: 31
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_l1b.tdf
     Info (12023): Found entity 1: mux_l1b File: C:/Users/amaan/Documents/ECE385_FinalProj/db/mux_l1b.tdf Line: 22
-Info (12130): Elaborated megafunction instantiation "colorBGD_example:comb_50|lpm_mult:Mult18" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2127
-Info (12133): Instantiated megafunction "colorBGD_example:comb_50|lpm_mult:Mult18" with the following parameter: File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 2127
+Info (12130): Elaborated megafunction instantiation "colorBGD_example:comb_50|lpm_mult:Mult18" File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1900
+Info (12133): Instantiated megafunction "colorBGD_example:comb_50|lpm_mult:Mult18" with the following parameter: File: C:/Users/amaan/Documents/ECE385_FinalProj/colorBGD/colorBGD_example.sv Line: 1900
     Info (12134): Parameter "LPM_WIDTHA" = "10"
     Info (12134): Parameter "LPM_WIDTHB" = "3"
     Info (12134): Parameter "LPM_WIDTHP" = "13"
@@ -15961,10 +15961,10 @@ Info (21057): Implemented 8236 device resources after synthesis - the final reso
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 24 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 329 warnings
-    Info: Peak virtual memory: 5084 megabytes
-    Info: Processing ended: Fri May 05 04:56:43 2023
-    Info: Elapsed time: 00:01:08
-    Info: Total CPU time (on all processors): 00:00:45
+    Info: Peak virtual memory: 5111 megabytes
+    Info: Processing ended: Fri May 05 06:02:24 2023
+    Info: Elapsed time: 00:01:16
+    Info: Total CPU time (on all processors): 00:00:49
 
 
 +------------------------------------------+
