@@ -993,49 +993,49 @@ always_ff @ (posedge vga_clk) begin
 			
 			if (venom1_on) begin
 				
-					red <= VS1_1_red;
+					red   <= VS1_1_red;
 					green <= VS1_1_green;
-					blue <= VS1_1_blue;
+					blue  <= VS1_1_blue;
 				
 				end
 				
 			else if (venom2_on) begin
 				
-					red <= 4'h0;
-					green <= 4'h0;
-					blue <= 4'h0;
+					red   <= VS1_2_red;
+					green <= VS1_2_green;
+					blue  <= VS1_2_blue;
 				
 				end
 				
 			else if (venom3_on) begin
 			
-				red <= 4'h0;
-				green <= 4'h0;
-				blue <= 4'h0;
+				   red   <= VS1_3_red;
+					green <= VS1_3_green;
+					blue  <= VS1_3_blue;
 			
 			end
 			
 			if (venom1_on1) begin
 				
-					red <=   4'h0;
-					green <= 4'h0;
-					blue <=  4'h0;
+					red   <= VS2_1_red;
+					green <= VS2_1_green;
+					blue  <= VS2_1_blue;
 				
 				end
 				
 			else if (venom2_on1) begin
 				
-					red <=   4'h0;
-					green <= 4'h0;
-					blue <=  4'h0;
+					red   <= VS2_2_red;
+					green <= VS2_2_green;
+					blue  <= VS2_2_blue;
 				
 				end
 				
 			else if (venom3_on1) begin
 			
-				red <= 4'h0;
-				green <= 4'h0;
-				blue <= 4'h0;
+					red   <= VS2_3_red;
+					green <= VS2_3_green;
+					blue  <= VS2_3_blue;
 			
 			end
 			
@@ -1730,18 +1730,122 @@ assign venomS1_1_romAddress = ((DrawX-Venom1X+4)) + ((DrawY-Venom1Y+4) * 8);
 
 logic [3:0] VS1_1_red, VS1_1_green, VS1_1_blue;
 
-Venom_rom Venom_rom (
+Venom_rom Venom_rom11 (
 	.clock   (negedge_vga_clk),
 	.address (venomS1_1_romAddress),
 	.q       (rom_VS1_1)
 );
 
-Venom_palette Venom_palette (
+Venom_palette Venom_palette11 (
 	.index (rom_VS1_1),
 	.red   (VS1_1_red),
 	.green (VS1_1_green),
 	.blue  (VS1_1_blue)
 );
+
+logic [5:0] venomS1_2_romAddress;
+logic [2:0] rom_VS1_2;
+
+assign venomS1_2_romAddress = ((DrawX-Venom2X+4)) + ((DrawY-Venom2Y+4) * 8);
+
+logic [3:0] VS1_2_red, VS1_2_green, VS1_2_blue;
+
+Venom_rom Venom_rom12 (
+	.clock   (negedge_vga_clk),
+	.address (venomS1_2_romAddress),
+	.q       (rom_VS1_2)
+);
+
+Venom_palette Venom_palette12 (
+	.index (rom_VS1_2),
+	.red   (VS1_2_red),
+	.green (VS1_2_green),
+	.blue  (VS1_2_blue)
+);
+
+logic [5:0] venomS1_3_romAddress;
+logic [2:0] rom_VS1_3;
+
+assign venomS1_3_romAddress = ((DrawX-Venom3X+4)) + ((DrawY-Venom3Y+4) * 8);
+
+logic [3:0] VS1_3_red, VS1_3_green, VS1_3_blue;
+
+Venom_rom Venom_rom13 (
+	.clock   (negedge_vga_clk),
+	.address (venomS1_3_romAddress),
+	.q       (rom_VS1_3)
+);
+
+Venom_palette Venom_palette13 (
+	.index (rom_VS1_3),
+	.red   (VS1_3_red),
+	.green (VS1_3_green),
+	.blue  (VS1_3_blue)
+);
+
+// Snake 2 Venom
+
+logic [5:0] venomS2_1_romAddress;
+logic [2:0] rom_VS2_1;
+
+assign venomS2_1_romAddress = ((DrawX-Venom1X1+4)) + ((DrawY-Venom1Y1+4) * 8);
+
+logic [3:0] VS2_1_red, VS2_1_green, VS2_1_blue;
+
+Venom_rom Venom_rom21 (
+	.clock   (negedge_vga_clk),
+	.address (venomS2_1_romAddress),
+	.q       (rom_VS2_1)
+);
+
+Venom_palette Venom_palette21 (
+	.index (rom_VS2_1),
+	.red   (VS2_1_red),
+	.green (VS2_1_green),
+	.blue  (VS2_1_blue)
+);
+
+logic [5:0] venomS2_2_romAddress;
+logic [2:0] rom_VS2_2;
+
+assign venomS2_2_romAddress = ((DrawX-Venom2X1+4)) + ((DrawY-Venom2Y1+4) * 8);
+
+logic [3:0] VS2_2_red, VS2_2_green, VS2_2_blue;
+
+Venom_rom Venom_rom22 (
+	.clock   (negedge_vga_clk),
+	.address (venomS2_2_romAddress),
+	.q       (rom_VS2_2)
+);
+
+Venom_palette Venom_palette22 (
+	.index (rom_VS2_2),
+	.red   (VS2_2_red),
+	.green (VS2_2_green),
+	.blue  (VS2_2_blue)
+);
+
+logic [5:0] venomS2_3_romAddress;
+logic [2:0] rom_VS2_3;
+
+assign venomS2_3_romAddress = ((DrawX-Venom3X1+4)) + ((DrawY-Venom3Y1+4) * 8);
+
+logic [3:0] VS2_3_red, VS2_3_green, VS2_3_blue;
+
+Venom_rom Venom_rom23 (
+	.clock   (negedge_vga_clk),
+	.address (venomS2_3_romAddress),
+	.q       (rom_VS2_3)
+);
+
+Venom_palette Venom_palette23 (
+	.index (rom_VS2_3),
+	.red   (VS2_3_red),
+	.green (VS2_3_green),
+	.blue  (VS2_3_blue)
+);
+
+
 
 
 // Apple Data
